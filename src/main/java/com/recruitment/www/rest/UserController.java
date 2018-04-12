@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * @Date: Create in 下午3:22 2018/3/15
  * @Modified By:
  */
+@CrossOrigin
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -21,17 +22,18 @@ public class UserController {
     private UserService userService;
 
 
-    @GetMapping("/index")
-    public String addUser(){
-        return "index";
-    }
+//    @GetMapping("/index")
+//    public String addUser(){
+//        return "index";
+//    }
 
     /**
      * 注册用户
      * @param user 用户
      */
     @PostMapping("/add")
-    public @ResponseBody RestResp addUser(@RequestBody User user){
+    public @ResponseBody RestResp addUser(User user){
+        System.out.println(user.getUsername());
         return userService.addUser(user);
     }
 
