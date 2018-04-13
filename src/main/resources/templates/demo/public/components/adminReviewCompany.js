@@ -1,9 +1,13 @@
+/**
+ * @author LiJun
+ * @date 2018/4/13
+ * @Description:
+*/
 import React,{Component} from 'react';
 import { Tabs, Select } from 'antd';
 import 'antd/dist/antd.css';
-import AdminHandleWage from "./adminHandleWage";
-import AdminHandleUser from "./adminHandleUser";
-class AdminWage extends Component{
+import AdminReviewCompanyHandle from "./adminReviewCompanyHandle";
+class AdminReviewCompany extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -15,7 +19,7 @@ class AdminWage extends Component{
             <div className={"container g-mb-40"}>
                 <div className={"row"}>
                     <div className={"col-xs-12 g-py-10"}>
-                        管理员用户：
+                        管理员：
                         <Select value={this.state.tabPosition} onChange={(tabPosition) => {this.setState({ tabPosition });}} dropdownMatchSelectWidth={false}>
                             <Select.Option value="top">顶部</Select.Option>
                             <Select.Option value="bottom">底部</Select.Option>
@@ -25,8 +29,7 @@ class AdminWage extends Component{
                     </div>
                     <div className={"col-xs-12 g-pb-30"}>
                         <Tabs tabPosition={this.state.tabPosition}>
-                            <Tabs.TabPane tab="员工管理" key="2"><AdminHandleUser/></Tabs.TabPane>
-                            <Tabs.TabPane tab="工资管理" key="1"><AdminHandleWage/></Tabs.TabPane>
+                            <Tabs.TabPane tab="公司审核" key="2"><AdminReviewCompanyHandle/></Tabs.TabPane>
                         </Tabs>
                     </div>
                 </div>
@@ -34,4 +37,4 @@ class AdminWage extends Component{
         )
     }
 }
-export default AdminWage;
+export default AdminReviewCompany;

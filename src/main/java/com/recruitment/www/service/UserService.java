@@ -54,7 +54,7 @@ public class UserService {
             return RestResp.fail("用户名不存在，请注册");
         } else {
             if (currentUser.getPassword().equals(password)){
-                return RestResp.success("登录成功",currentUser);
+                return RestResp.success("用户登录成功",currentUser);
             }else {
                 return RestResp.fail("密码错误");
             }

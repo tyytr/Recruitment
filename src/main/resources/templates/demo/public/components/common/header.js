@@ -46,8 +46,8 @@ class Header extends Component{
                             </ul>
                             <ul className={`nav navbar-nav navbar-right ${(loginStatus==="true")&&(token==="2")?"":"hidden"}`}>
                                 <li className=""><Link to="/home" >首页</Link></li>
-                                <li><a href="/shopList">招聘信息</a></li>
-                                <li><a href="/publish">简历中心</a></li>
+                                <li><a href="/personalJobOffers">招聘信息</a></li>
+                                <li><a href="/personalResume">简历中心</a></li>
                                 <li>
                                     <Link to="" style={{color:"#1890ff"}} >欢迎个人：{username}</Link>
                                 </li>
@@ -58,8 +58,8 @@ class Header extends Component{
                             </ul>
                             <ul className={`nav navbar-nav navbar-right ${(loginStatus==="true")&&(token==="3")?"":"hidden"}`}>
                                 {/*<li className=""><Link to="/home" >首页</Link></li>*/}
-                                <li><a href="/adminNotice">公告</a></li>
-                                <li><a href="/adminAdvice">建议</a></li>
+                                {/*<li><a href="/adminNotice">公告</a></li>*/}
+                                {/*<li><a href="/adminAdvice">建议</a></li>*/}
                                 <li>
                                     <Link to="" style={{color:"#1890ff"}} >欢迎企业：{username}</Link>
                                 </li>
@@ -70,11 +70,8 @@ class Header extends Component{
                             </ul>
                             <ul className={`nav navbar-nav navbar-right ${(loginStatus==="true")&&(token==="4")?"":"hidden"}`}>
                                 {/*<li className=""><Link to="/home" >首页</Link></li>*/}
-                                <li><a href="/adminRegister">注册认证</a></li>
-                                <li><a href="/adminAuthority">权限管理</a></li>
-                                <li><a href="/adminGoods">商品认证</a></li>
-                                <li><a href="/adminNotice">公告</a></li>
-                                <li><a href="/adminAdvice">建议</a></li>
+                                <li><a href="/adminReviewCompany">公司审核</a></li>
+                                {/*<li><a href="/adminAdvice">建议</a></li>*/}
                                 <li>
                                     <Link to="" style={{color:"#1890ff"}} >欢迎管理员：{username}</Link>
                                 </li>

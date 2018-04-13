@@ -136,7 +136,7 @@ export function signinAdminAction(username,password) {
             if (msg.status === 1) {
                 localStorage.setItem('loginStatus', true);
                 alert(msg.message);
-                // window.location.href = `${ROOT_URLF}/home`;
+                window.location.href = `${ROOT_URLF}/home`;
             }else{
                 alert(msg.message);
                 // window.location.href = `${ROOT_URLF}/singin`;
@@ -149,6 +149,63 @@ export function signinAdminAction(username,password) {
         }
     });
 }
+
+
+/**
+ * @author LiJun
+ * @date 2018/4/13
+ * @Description: 管理员审核公司
+*/
+export function adminReviewAgree(data) {
+    console.log(data);
+    $.ajax({
+        type : "GET",
+        url : `${ROOT_URL}/admin/check`,
+        cache : false,
+        traditional: true,
+        data : {"data":data},
+        // dataType : "json",
+        success : function (msg) {
+            console.log(msg);
+            if (msg.status === 1){
+                // window.location.href = `${ROOT_URLF}/admin`;
+            }
+        },
+        error : function (err) {
+            console.log(err);
+            alert("与后台交互走error");
+        }
+    });
+}
+export function adminReviewDisagree(data) {
+    console.log(data);
+    $.ajax({
+        type : "GET",
+        url : `${ROOT_URL}/admin/adviceAgree`,
+        cache : false,
+        traditional: true,
+        data : {"data":data},
+        // dataType : "json",
+        success : function (msg) {
+            console.log(msg);
+            if (msg.status === 1){
+                // window.location.href = `${ROOT_URLF}/admin`;
+            }
+        },
+        error : function (err) {
+            console.log(err);
+            alert("与后台交互走error");
+        }
+    });
+}
+
+
+
+
+
+
+
+
 
 export function adminDeleteWage(data) {
     $.ajax({

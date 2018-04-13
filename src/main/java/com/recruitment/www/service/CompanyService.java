@@ -51,12 +51,12 @@ public class CompanyService {
         Company currentCompany = companyRepo.findByUsername(username);
 
         if (null == currentCompany) {
-            return RestResp.fail("公司用户名不存在，请注册公司");
+            return RestResp.fail("公司用户名不存在，请注册公司",currentCompany);
         } else {
             if (currentCompany.getPassword().equals(password) && currentCompany.getAble().equals(Able.ENABLE.getNumber())){
-                return RestResp.success("登录成功",currentCompany);
+                return RestResp.success("公司登录成功",currentCompany);
             }else {
-                return RestResp.fail("密码错误或未认证");
+                return RestResp.fail("密码错误或未认证",currentCompany);
             }
         }
     }
