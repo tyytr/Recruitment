@@ -9,6 +9,7 @@ class Header extends Component{
         this.state = {};
     }
     render(){
+        // localStorage.setItem('token', -1);
         const loginStatus = localStorage.getItem("loginStatus");
         const token = localStorage.getItem("token");
         const username = localStorage.getItem("username");
@@ -45,12 +46,10 @@ class Header extends Component{
                             </ul>
                             <ul className={`nav navbar-nav navbar-right ${(loginStatus==="true")&&(token==="2")?"":"hidden"}`}>
                                 <li className=""><Link to="/home" >首页</Link></li>
-                                <li><a href="/shopList">商品</a></li>
-                                <li><a href="/publish">商品发布</a></li>
-                                <li><a href="/personal">个人中心</a></li>
-                                <li><a href="/cart"><Icon type="shopping-cart"/>购物车</a></li>
+                                <li><a href="/shopList">招聘信息</a></li>
+                                <li><a href="/publish">简历中心</a></li>
                                 <li>
-                                    <Link to="" style={{color:"#1890ff"}} >{username}</Link>
+                                    <Link to="" style={{color:"#1890ff"}} >欢迎个人：{username}</Link>
                                 </li>
                                 <li>
                                     {/*<button onClick={()=> {localStorage.clear();}}>退出</button>*/}
@@ -59,13 +58,10 @@ class Header extends Component{
                             </ul>
                             <ul className={`nav navbar-nav navbar-right ${(loginStatus==="true")&&(token==="3")?"":"hidden"}`}>
                                 {/*<li className=""><Link to="/home" >首页</Link></li>*/}
-                                <li><a href="/adminRegister">注册认证</a></li>
-                                <li><a href="/adminAuthority">权限管理</a></li>
-                                <li><a href="/adminGoods">商品认证</a></li>
                                 <li><a href="/adminNotice">公告</a></li>
                                 <li><a href="/adminAdvice">建议</a></li>
                                 <li>
-                                    <Link to="" style={{color:"#1890ff"}} >{username}</Link>
+                                    <Link to="" style={{color:"#1890ff"}} >欢迎企业：{username}</Link>
                                 </li>
                                 <li>
                                     {/*<button onClick={()=> {localStorage.clear();}}>退出</button>*/}
@@ -80,7 +76,7 @@ class Header extends Component{
                                 <li><a href="/adminNotice">公告</a></li>
                                 <li><a href="/adminAdvice">建议</a></li>
                                 <li>
-                                    <Link to="" style={{color:"#1890ff"}} >{username}</Link>
+                                    <Link to="" style={{color:"#1890ff"}} >欢迎管理员：{username}</Link>
                                 </li>
                                 <li>
                                     {/*<button onClick={()=> {localStorage.clear();}}>退出</button>*/}

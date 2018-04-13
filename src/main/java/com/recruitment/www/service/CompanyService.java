@@ -53,10 +53,10 @@ public class CompanyService {
         if (null == currentCompany) {
             return RestResp.fail("公司用户名不存在，请注册公司");
         } else {
-            if (currentCompany.getPassword().equals(password)){
+            if (currentCompany.getPassword().equals(password) && currentCompany.getAble().equals(Able.ENABLE.getNumber())){
                 return RestResp.success("登录成功",currentCompany);
             }else {
-                return RestResp.fail("密码错误");
+                return RestResp.fail("密码错误或未认证");
             }
         }
     }
