@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import {Select, Tabs} from "antd";
 import Sing from './sing/sing';
 import SingFormIn from './sing/singFormIn';
-import {signinAction} from "../../actions/auth";
+import {signinAction, signinAdminAction, signinCompanyAction} from "../../actions/auth";
 
 class Singin extends Component {
     constructor(props) {
@@ -94,7 +94,7 @@ class Singin extends Component {
                 nameHelp1: "",
                 wordHelp1: ""
             });
-            signinAction(this.state.userName1,this.state.passWord1);
+            signinCompanyAction(this.state.userName1,this.state.passWord1);
             // console.log(localStorage);
         }
     }
@@ -130,7 +130,7 @@ class Singin extends Component {
                 nameHelp2: "",
                 wordHelp2: ""
             });
-            signinAction(this.state.userName2,this.state.passWord2);
+            signinAdminAction(this.state.userName2,this.state.passWord2);
             // console.log(localStorage);
         }
     }

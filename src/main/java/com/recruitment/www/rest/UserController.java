@@ -27,7 +27,7 @@ public class UserController {
      * @param user 用户
      */
     @PostMapping("/add")
-    public RestResp addUser(@RequestBody User user){
+    public RestResp addUser( User user){
         return userService.addUser(user);
     }
 

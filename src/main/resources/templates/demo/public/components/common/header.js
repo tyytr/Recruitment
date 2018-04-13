@@ -43,35 +43,50 @@ class Header extends Component{
                                     <Link to="/singup" >注册</Link>
                                 </li>
                             </ul>
-                            {/*<ul className={`nav navbar-nav navbar-right ${(loginStatus==="true")&&(token==="1")?"":"hidden"}`}>*/}
+                            <ul className={`nav navbar-nav navbar-right ${(loginStatus==="true")&&(token==="2")?"":"hidden"}`}>
+                                <li className=""><Link to="/home" >首页</Link></li>
+                                <li><a href="/shopList">商品</a></li>
+                                <li><a href="/publish">商品发布</a></li>
+                                <li><a href="/personal">个人中心</a></li>
+                                <li><a href="/cart"><Icon type="shopping-cart"/>购物车</a></li>
+                                <li>
+                                    <Link to="" style={{color:"#1890ff"}} >{username}</Link>
+                                </li>
+                                <li>
+                                    {/*<button onClick={()=> {localStorage.clear();}}>退出</button>*/}
+                                    <Link to="/" onClick={()=> {localStorage.clear();}} >退出</Link>
+                                </li>
+                            </ul>
+                            <ul className={`nav navbar-nav navbar-right ${(loginStatus==="true")&&(token==="3")?"":"hidden"}`}>
                                 {/*<li className=""><Link to="/home" >首页</Link></li>*/}
-                                {/*<li><a href="/shopList">商品</a></li>*/}
-                                {/*<li><a href="/publish">商品发布</a></li>*/}
-                                {/*<li><a href="/personal">个人中心</a></li>*/}
-                                {/*<li><a href="/cart"><Icon type="shopping-cart"/>购物车</a></li>*/}
-                                {/*<li>*/}
-                                    {/*<Link to="" style={{color:"#1890ff"}} >{username}</Link>*/}
-                                {/*</li>*/}
-                                {/*<li>*/}
-                                    {/*/!*<button onClick={()=> {localStorage.clear();}}>退出</button>*!/*/}
-                                    {/*<Link to="/" onClick={()=> {localStorage.clear();}} >退出</Link>*/}
-                                {/*</li>*/}
-                            {/*</ul>*/}
-                            {/*<ul className={`nav navbar-nav navbar-right ${(loginStatus==="true")&&(token==="2")?"":"hidden"}`}>*/}
-                                {/*/!*<li className=""><Link to="/home" >首页</Link></li>*!/*/}
-                                {/*<li><a href="/adminRegister">注册认证</a></li>*/}
-                                {/*<li><a href="/adminAuthority">权限管理</a></li>*/}
-                                {/*<li><a href="/adminGoods">商品认证</a></li>*/}
-                                {/*<li><a href="/adminNotice">公告</a></li>*/}
-                                {/*<li><a href="/adminAdvice">建议</a></li>*/}
-                                {/*<li>*/}
-                                    {/*<Link to="" style={{color:"#1890ff"}} >{username}</Link>*/}
-                                {/*</li>*/}
-                                {/*<li>*/}
-                                    {/*/!*<button onClick={()=> {localStorage.clear();}}>退出</button>*!/*/}
-                                    {/*<Link to="/" onClick={()=> {localStorage.clear();}} >退出</Link>*/}
-                                {/*</li>*/}
-                            {/*</ul>*/}
+                                <li><a href="/adminRegister">注册认证</a></li>
+                                <li><a href="/adminAuthority">权限管理</a></li>
+                                <li><a href="/adminGoods">商品认证</a></li>
+                                <li><a href="/adminNotice">公告</a></li>
+                                <li><a href="/adminAdvice">建议</a></li>
+                                <li>
+                                    <Link to="" style={{color:"#1890ff"}} >{username}</Link>
+                                </li>
+                                <li>
+                                    {/*<button onClick={()=> {localStorage.clear();}}>退出</button>*/}
+                                    <Link to="/" onClick={()=> {localStorage.clear();}} >退出</Link>
+                                </li>
+                            </ul>
+                            <ul className={`nav navbar-nav navbar-right ${(loginStatus==="true")&&(token==="4")?"":"hidden"}`}>
+                                {/*<li className=""><Link to="/home" >首页</Link></li>*/}
+                                <li><a href="/adminRegister">注册认证</a></li>
+                                <li><a href="/adminAuthority">权限管理</a></li>
+                                <li><a href="/adminGoods">商品认证</a></li>
+                                <li><a href="/adminNotice">公告</a></li>
+                                <li><a href="/adminAdvice">建议</a></li>
+                                <li>
+                                    <Link to="" style={{color:"#1890ff"}} >{username}</Link>
+                                </li>
+                                <li>
+                                    {/*<button onClick={()=> {localStorage.clear();}}>退出</button>*/}
+                                    <Link to="/" onClick={()=> {localStorage.clear();}} >退出</Link>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </nav>
