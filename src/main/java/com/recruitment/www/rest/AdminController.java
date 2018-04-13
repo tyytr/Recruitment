@@ -13,6 +13,7 @@ import javax.annotation.Resource;
  * @Date: Create in 下午2:03 2018/4/13
  * @Modified By:
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/admin")
 public class AdminController {

@@ -4,6 +4,7 @@ import {
 } from "./type";
 
 function setAuthToLocalStorage(data) {
+    console.log(data);
     localStorage.setItem('token', data.data.token);
     localStorage.setItem('userId', data.data.id); //用户ID
     localStorage.setItem('username', data.data.username); //用户登录名
@@ -12,6 +13,7 @@ function setAuthToLocalStorage(data) {
     // localStorage.setItem('admin', data.data.admin);//管理员
     localStorage.setItem('agreement', data.data.agreement);//同意协议
     localStorage.setItem('loginStatus', false);//当前是否登录
+    localStorage.setItem('able', data.data.able);//当前是否登录
     console.log(localStorage);
 }
 export function singupAction(data) {
@@ -80,7 +82,7 @@ export function signinAction(username,password) {
             if (msg.status === 1) {
                 localStorage.setItem('loginStatus', true);
                 alert(msg.message);
-                // window.location.href = `${ROOT_URLF}/home`;
+                window.location.href = `${ROOT_URLF}/home`;
             }else{
                 alert(msg.message);
                 // window.location.href = `${ROOT_URLF}/singin`;
@@ -94,18 +96,22 @@ export function signinAction(username,password) {
     });
 }
 export function signinCompanyAction(username,password) {
+    // console.log("1");
     $.ajax({
         type : "get",
         url : `${ROOT_URL}/company/login`,
         data : {username,password},
+
         // dataType : "json",
         success : function (msg) {
-            setAuthToLocalStorage(msg);
+            // console.log("2");
+            // console.log("3");
             console.log(msg);
             if (msg.status === 1) {
+                setAuthToLocalStorage(msg);
                 localStorage.setItem('loginStatus', true);
                 alert(msg.message);
-                // window.location.href = `${ROOT_URLF}/home`;
+                window.location.href = `${ROOT_URLF}/home`;
             }else{
                 alert(msg.message);
                 // window.location.href = `${ROOT_URLF}/singin`;
@@ -130,7 +136,7 @@ export function signinAdminAction(username,password) {
             if (msg.status === 1) {
                 localStorage.setItem('loginStatus', true);
                 alert(msg.message);
-                // window.location.href = `${ROOT_URLF}/home`;
+                window.location.href = `${ROOT_URLF}/home`;
             }else{
                 alert(msg.message);
                 // window.location.href = `${ROOT_URLF}/singin`;
@@ -143,6 +149,63 @@ export function signinAdminAction(username,password) {
         }
     });
 }
+
+
+/**
+ * @author LiJun
+ * @date 2018/4/13
+ * @Description: 管理员审核公司
+*/
+export function adminReviewAgree(data) {
+    console.log(data);
+    $.ajax({
+        type : "GET",
+        url : `${ROOT_URL}/admin/check`,
+        cache : false,
+        traditional: true,
+        data : {"data":data},
+        // dataType : "json",
+        success : function (msg) {
+            console.log(msg);
+            if (msg.status === 1){
+                // window.location.href = `${ROOT_URLF}/admin`;
+            }
+        },
+        error : function (err) {
+            console.log(err);
+            alert("与后台交互走error");
+        }
+    });
+}
+export function adminReviewDisagree(data) {
+    console.log(data);
+    $.ajax({
+        type : "GET",
+        url : `${ROOT_URL}/admin/adviceAgree`,
+        cache : false,
+        traditional: true,
+        data : {"data":data},
+        // dataType : "json",
+        success : function (msg) {
+            console.log(msg);
+            if (msg.status === 1){
+                // window.location.href = `${ROOT_URLF}/admin`;
+            }
+        },
+        error : function (err) {
+            console.log(err);
+            alert("与后台交互走error");
+        }
+    });
+}
+
+
+
+
+
+
+
+
 
 export function adminDeleteWage(data) {
     $.ajax({

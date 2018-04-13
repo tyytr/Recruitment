@@ -6,9 +6,10 @@ import Singin from './components/auth/singin';
 import Singup from './components/auth/singup';
 import Singout from './components/auth/singout'
 import Header from './components/common/header';
+import AdminReviewCompany from './components/adminReviewCompany';
+import PersonalJobOffers from './components/personalJobOffers';
 
-import UserWage from './components/userWage';
-import AdminWage from './components/adminWage';
+
 ReactDOM.render(
         <BrowserRouter>
             <div>
@@ -16,9 +17,10 @@ ReactDOM.render(
                 <Switch>
                     <Route path='/singin' component={Singin} />
                     <Route path='/singup' component={Singup} />
-                    <Route path='/singout' component={Singout} />>
-                    <Route path="/adminWage" component={AdminWage}/>
-                    <Route path="/userWage" component={UserWage}/>
+                    <Route path='/singout' component={Singout} />
+                    <Route path='/adminReviewCompany' component={AdminReviewCompany} />
+                    <Route path='/personalJobOffers' component={PersonalJobOffers} />
+
                     <Route path='/' component={Home} />
                 </Switch>
             </div>
