@@ -34,7 +34,7 @@ public class AdminService {
             return RestResp.fail("用户名不存在，请插入数据库管理员");
         } else {
             if (currentAdmin.getPassword().equals(password)){
-                return RestResp.success("登录成功",currentAdmin);
+                return RestResp.success("管理员登录成功",currentAdmin);
             }else {
                 return RestResp.fail("密码错误");
             }
