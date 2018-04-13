@@ -1,12 +1,16 @@
 package com.recruitment.www.service;
 
+import com.recruitment.www.common.Able;
 import com.recruitment.www.common.RestResp;
 import com.recruitment.www.entity.Admin;
 import com.recruitment.www.entity.Company;
 import com.recruitment.www.repo.AdminRepo;
+import com.recruitment.www.repo.CompanyRepo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author: Gaoyp
@@ -19,6 +23,9 @@ public class AdminService {
 
     @Resource
     private AdminRepo adminRepo;
+
+    @Resource
+    private CompanyRepo companyRepo;
 
     /**
      *  用户登录
@@ -38,6 +45,24 @@ public class AdminService {
             }else {
                 return RestResp.fail("密码错误");
             }
+        }
+    }
+
+
+    /**
+     * 审核公司
+     * @param
+     * @return
+     */
+
+    public RestResp checkCompany(Company company){
+
+        if (company.getAble().equals(Able.DISABLE.getNumber())){
+            company.setAble(Able.ENABLE.getNumber());
+            companyRepo.save(company);
+            return RestResp.success("审核通过",company);
+        }else {
+            return RestResp.fail("已审核");
         }
     }
 
