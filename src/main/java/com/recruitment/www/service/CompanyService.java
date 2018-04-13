@@ -8,6 +8,8 @@ import com.recruitment.www.repo.CompanyRepo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * @Author: Gaoyp
@@ -59,6 +61,47 @@ public class CompanyService {
                 return RestResp.fail("密码错误或未认证",currentCompany);
             }
         }
+    }
+
+
+    /**
+     *  查询所有没审核的公司
+     * @param
+     * @return
+     */
+    public RestResp findAllDisable(){
+
+        List<Company> allCompany = companyRepo.findByAble(Able.DISABLE.getNumber());
+
+        allCompany.forEach(company -> {
+            if (null == company.getKey() || company.getKey() != company.getId().toString()){
+                company.setKey(company.getId().toString());
+                companyRepo.save(company);
+            }
+        });
+
+        return RestResp.success("查询全部未审核公司成功",allCompany);
+
+    }
+
+    /**
+     * 模糊查询未通过的公司
+     * @param
+     * @return
+     */
+    public RestResp findDisableCompany(String username){
+
+        List<Company> allCompany = companyRepo.findByUsernameLikeAndAble(username,Able.DISABLE.getNumber());
+
+        allCompany.forEach(company -> {
+            if (null == company.getKey() || company.getKey() != company.getId().toString()){
+                company.setKey(company.getId().toString());
+                companyRepo.save(company);
+            }
+        });
+
+        return RestResp.success("模糊查询未审核公司成功",allCompany);
+
     }
 
 

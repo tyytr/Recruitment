@@ -32,4 +32,14 @@ public class CompanyController {
                           @RequestParam String password){
         return companyService.loginIn(username,password);
     }
+
+    @GetMapping("/list")
+    public RestResp findAll(){
+        return companyService.findAllDisable();
+    }
+
+    @GetMapping("/find")
+    public RestResp findDisableCompany(@RequestParam String username){
+        return companyService.findDisableCompany(username);
+    }
 }
