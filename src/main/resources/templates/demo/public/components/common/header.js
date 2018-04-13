@@ -29,7 +29,7 @@ class Header extends Component{
                             <a className="navbar-brand" href="#">招聘网</a>
                         </div>
                         <div className="collapse navbar-collapse" id="example-navbar-collapse">
-                            <ul className={`nav navbar-nav navbar-right ${(loginStatus==="false"||loginStatus===null)?"":"hidden"}`}>
+                            <ul className={`nav navbar-nav navbar-right ${(loginStatus==="false"||loginStatus===null||token===null)?"":"hidden"}`}>
                                 <li className=""><Link to="/home" >首页</Link></li>
                                 {/*<li className={""}>*/}
                                     {/*<Link to="/adminWage" >管理员</Link>*/}

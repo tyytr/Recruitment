@@ -5,15 +5,20 @@ import {
 
 function setAuthToLocalStorage(data) {
     console.log(data);
-    localStorage.setItem('token', data.data.token);
-    localStorage.setItem('userId', data.data.id); //用户ID
-    localStorage.setItem('username', data.data.username); //用户登录名
-    localStorage.setItem('phoneNumber', data.data.phoneNumber);//手机号
-    localStorage.setItem('password', data.data.password);//密码
-    // localStorage.setItem('admin', data.data.admin);//管理员
-    localStorage.setItem('agreement', data.data.agreement);//同意协议
-    localStorage.setItem('loginStatus', false);//当前是否登录
-    localStorage.setItem('able', data.data.able);//当前是否登录
+    if(data.data === null){
+        localStorage.setItem('token', "-1");
+    }else {
+        localStorage.setItem('token', data.data.token);
+        // localStorage.setItem('token', "-1");
+        localStorage.setItem('userId', data.data.id); //用户ID
+        localStorage.setItem('username', data.data.username); //用户登录名
+        localStorage.setItem('phoneNumber', data.data.phoneNumber);//手机号
+        localStorage.setItem('password', data.data.password);//密码
+        // localStorage.setItem('admin', data.data.admin);//管理员
+        localStorage.setItem('agreement', data.data.agreement);//同意协议
+        localStorage.setItem('loginStatus', false);//当前是否登录
+        localStorage.setItem('able', data.data.able);//当前是否登录
+    }
     console.log(localStorage);
 }
 export function singupAction(data) {
@@ -77,6 +82,7 @@ export function signinAction(username,password) {
         data : {username,password},
         // dataType : "json",
         success : function (msg) {
+            // localStorage.setItem('token', data.data.token);
             setAuthToLocalStorage(msg);
             console.log(msg);
             if (msg.status === 1) {
@@ -90,6 +96,7 @@ export function signinAction(username,password) {
             // localStorage.setItem('loginStatus', true);
         },
         error : function (err) {
+            localStorage.setItem('token', "-1");
             console.log(err);
             alert("与后台交互走error");
         }
@@ -159,7 +166,7 @@ export function signinAdminAction(username,password) {
 export function adminReviewAgree(data) {
     console.log(data);
     $.ajax({
-        type : "GET",
+        type : "post",
         url : `${ROOT_URL}/admin/check`,
         cache : false,
         traditional: true,
