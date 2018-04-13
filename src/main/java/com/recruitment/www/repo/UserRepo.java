@@ -1,10 +1,8 @@
-package com.recruitment.www.mapper;
+package com.recruitment.www.repo;
 
 import com.recruitment.www.entity.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
 
 /**
  * @Author: Gaoyp

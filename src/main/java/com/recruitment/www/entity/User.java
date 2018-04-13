@@ -26,4 +26,5 @@ public class User {
     @Column(name = "u_key")
     private String key;
     private String agreement;
+    private Integer token;
 }

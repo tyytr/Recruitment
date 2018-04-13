@@ -31,4 +31,9 @@ public class UserController {
         return userService.addUser(user);
     }
 
+    @GetMapping("/login")
+    public RestResp loginIn(@RequestParam String username,
+                            @RequestParam String password){
+        return userService.loginIn(username,password);
+    }
 }
