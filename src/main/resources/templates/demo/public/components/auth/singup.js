@@ -81,7 +81,7 @@ class Singup extends Component {
             rpassword : this.state.rPassWord,
             phone : this.state.phone,
             agree : this.state.isAgree,
-            time : time,
+            createTime : time,
             // authorityInfo: this.state.authorityInfo,
         };
         if (this.state.isAgree === false) {
