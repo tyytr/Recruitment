@@ -78,9 +78,9 @@ class Singup extends Component {
         const data = {
             username: this.state.userName,
             password: this.state.passWord,
-            rpassword : this.state.rPassWord,
-            phone : this.state.phone,
-            agree : this.state.isAgree,
+            // rpassword : this.state.rPassWord,
+            phoneNumber : this.state.phone,
+            agreement : this.state.isAgree,
             createTime : time,
             // authorityInfo: this.state.authorityInfo,
         };
@@ -164,10 +164,10 @@ class Singup extends Component {
         const data = {
             username: this.state.userName1,
             password: this.state.passWord1,
-            rpassword : this.state.rPassWord1,
-            phone : this.state.phone1,
-            agree : this.state.isAgree1,
-            time : time,
+            // rpassword : this.state.rPassWord1,
+            phoneNumber : this.state.phone1,
+            agreement : this.state.isAgree1,
+            createTime : time,
             // authorityInfo: this.state.authorityInfo,
         };
         if (this.state.isAgree1 === false) {

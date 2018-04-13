@@ -14,6 +14,7 @@ import javax.annotation.Resource;
  * @Modified By:
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/company")
 public class CompanyController {
 
@@ -22,7 +23,7 @@ public class CompanyController {
 
 
     @PostMapping("/add")
-    public RestResp addCompany(@RequestBody Company company){
+    public RestResp addCompany(Company company){
         return companyService.addUser(company);
     }
 
