@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.*;
  * @Modified By:
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
+
 
     /**
      * 注册用户
