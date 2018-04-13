@@ -2,11 +2,11 @@ package com.recruitment.www.service;
 
 import com.recruitment.www.common.RestResp;
 import com.recruitment.www.entity.User;
-import com.recruitment.www.mapper.UserMapper;
-import org.apache.ibatis.annotations.Insert;
+import com.recruitment.www.mapper.UserRepo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Optional;
 
 /**
  * @Author: Gaoyp
@@ -17,31 +17,25 @@ import javax.annotation.Resource;
 @Service
 public class UserService {
 
+//    private static String AGREEMENT = "true";
+
     @Resource
-    private UserMapper userMapper;
+    private UserRepo userRepo;
 
 
     /**
      * 注册用户
      * @param user 用户
      */
-    public RestResp addUser(User user){
+    public RestResp addUser(User user) {
 
-        User editUser = userMapper.findUserByUsername(user.getUsername());
+        User currentUser = userRepo.findByUsername(user.getUsername());
 
-        if (null != editUser){
+        if (null == currentUser){
+            userRepo.save(user);
+            return RestResp.success("注册成功");
+        }else {
             return RestResp.fail("用户名已存在");
         }
-
-        Integer row = userMapper.addUser(user.getUsername(), user.getPassword());
-
-        if (0 == row){
-            return RestResp.fail("注册失败");
-        }
-
-        return RestResp.success("注册成功",user);
-
     }
-
-
 }

@@ -13,25 +13,19 @@ import org.springframework.web.bind.annotation.*;
  * @Date: Create in 下午3:22 2018/3/15
  * @Modified By:
  */
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-
-    @GetMapping("/index")
-    public String addUser(){
-        return "index";
-    }
-
     /**
      * 注册用户
      * @param user 用户
      */
     @PostMapping("/add")
-    public @ResponseBody RestResp addUser(@RequestBody User user){
+    public RestResp addUser(@RequestBody User user){
         return userService.addUser(user);
     }
 
