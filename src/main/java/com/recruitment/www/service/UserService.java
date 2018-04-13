@@ -33,7 +33,6 @@ public class UserService {
 
         if (null == currentUser){
             user.setToken(Token.USER.getNumber());
-            user.setKey(user.getId().toString());
             userRepo.save(user);
             return RestResp.success("用户注册成功",user);
         }else {

@@ -32,7 +32,6 @@ public class CompanyService {
 
         if (null == currentCompany){
             company.setToken(Token.COMPANY.getNumber());
-            company.setKey(company.getId().toString());
             company.setAble(Able.DISABLE.getNumber());
             companyRepo.save(company);
             return RestResp.success("公司注册成功",company);
