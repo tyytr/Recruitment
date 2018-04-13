@@ -1,5 +1,6 @@
 package com.recruitment.www.service;
 
+import com.recruitment.www.common.Able;
 import com.recruitment.www.common.RestResp;
 import com.recruitment.www.common.Token;
 import com.recruitment.www.entity.Company;
@@ -31,9 +32,9 @@ public class CompanyService {
 
         if (null == currentCompany){
             company.setToken(Token.COMPANY.getNumber());
-            company.setKey(company.getId().toString());
+            company.setAble(Able.DISABLE.getNumber());
             companyRepo.save(company);
-            return RestResp.success("注册成功");
+            return RestResp.success("公司注册成功",company);
         }else {
             return RestResp.fail("用户名已存在");
         }
