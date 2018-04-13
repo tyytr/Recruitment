@@ -6,6 +6,7 @@ import com.recruitment.www.service.AdminService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Author: Gaoyp
@@ -29,12 +30,12 @@ public class AdminController {
     }
 
     @PostMapping("/check")
-    public RestResp checkCompany(Long[] ids){
+    public RestResp checkCompany(List<String> ids){
         return adminService.checkCompany(ids);
     }
 
     @PostMapping("/destroy")
-    public RestResp destroyCompany(Long[] ids){
+    public RestResp destroyCompany(List<String> ids){
         return adminService.destroyCompany(ids);
     }
 

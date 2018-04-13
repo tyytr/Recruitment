@@ -58,23 +58,23 @@ public class AdminService {
      * @return
      */
 
-    public RestResp checkCompany(Long[] companyIds){
+    public RestResp checkCompany(List<String> companyIds){
 
 
-        Arrays.asList(companyIds).forEach(companyId -> {
+        companyIds.forEach(companyId -> {
 
-            Optional<Company> company = companyRepo.findById(companyId);
+            Optional<Company> company = companyRepo.findById(Long.valueOf(companyId));
             company.get().setAble(Able.ENABLE.getNumber());
             companyRepo.save(company.get());
         });
         return RestResp.success("审核通过",companyIds);
     }
 
-    public RestResp destroyCompany(Long[] companyIds){
+    public RestResp destroyCompany(List<String> companyIds){
 
-        Arrays.asList(companyIds).forEach(companyId -> {
+        companyIds.forEach(companyId -> {
 
-            Optional<Company> company = companyRepo.findById(companyId);
+            Optional<Company> company = companyRepo.findById(Long.valueOf(companyId));
             company.get().setAble(Able.DISTROY.getNumber());
             companyRepo.save(company.get());
         });
