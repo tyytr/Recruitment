@@ -7,7 +7,7 @@ package com.recruitment.www.common;
  * @Modified By:
  */
 public enum Able {
-    ENABLE(1),DISABLE(0);
+    ENABLE(1),DISABLE(0),DISTROY(-1);
 
 
     private Integer number;

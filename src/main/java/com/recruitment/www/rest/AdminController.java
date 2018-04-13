@@ -28,8 +28,13 @@ public class AdminController {
     }
 
     @PostMapping("/check")
-    public RestResp checkCompany(Company company){
-        return adminService.checkCompany(company);
+    public RestResp checkCompany(Long[] ids){
+        return adminService.checkCompany(ids);
+    }
+
+    @PostMapping("/destroy")
+    public RestResp destroyCompany(Long[] ids){
+        return adminService.destroyCompany(ids);
     }
 
 }

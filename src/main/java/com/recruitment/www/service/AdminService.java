@@ -9,8 +9,11 @@ import com.recruitment.www.repo.CompanyRepo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author: Gaoyp
@@ -55,15 +58,28 @@ public class AdminService {
      * @return
      */
 
-    public RestResp checkCompany(Company company){
+    public RestResp checkCompany(Long[] companyIds){
 
-        if (company.getAble().equals(Able.DISABLE.getNumber())){
-            company.setAble(Able.ENABLE.getNumber());
-            companyRepo.save(company);
-            return RestResp.success("审核通过",company);
-        }else {
-            return RestResp.fail("已审核");
-        }
+
+        Arrays.asList(companyIds).forEach(companyId -> {
+
+            Optional<Company> company = companyRepo.findById(companyId);
+            company.get().setAble(Able.ENABLE.getNumber());
+            companyRepo.save(company.get());
+        });
+        return RestResp.success("审核通过",companyIds);
+    }
+
+    public RestResp destroyCompany(Long[] companyIds){
+
+        Arrays.asList(companyIds).forEach(companyId -> {
+
+            Optional<Company> company = companyRepo.findById(companyId);
+            company.get().setAble(Able.DISTROY.getNumber());
+            companyRepo.save(company.get());
+        });
+        return RestResp.success("审核通过",companyIds);
+
     }
 
 }

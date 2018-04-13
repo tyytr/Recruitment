@@ -40,4 +40,5 @@ public interface CompanyRepo extends CrudRepository<Company,Long>{
      * @return
      */
     List<Company> findByUsernameLikeAndAble(String username, Integer able);
+
 }
