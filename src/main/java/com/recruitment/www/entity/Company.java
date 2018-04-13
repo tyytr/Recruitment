@@ -27,5 +27,6 @@ public class Company {
     private String key;
     private String agreement;
     private Integer token;
+    private Integer able;
 
 }
