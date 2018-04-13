@@ -78,7 +78,7 @@ public class AdminService {
             company.get().setAble(Able.DISTROY.getNumber());
             companyRepo.save(company.get());
         });
-        return RestResp.success("审核通过",companyIds);
+        return RestResp.success("审核拒绝",companyIds);
 
     }
 
