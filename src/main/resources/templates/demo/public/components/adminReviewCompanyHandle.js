@@ -35,15 +35,15 @@ class AdminReviewCompanyHandle extends Component{
     }
     render(){
         const columns = [{
-            title : '用户名',
+            title : '企业名',
             dataIndex : 'username',
             key : 'username',
             className : 'col-xs-5'
             // render: text => <a href="#">{text}</a>,
         },{
             title : '联系方式',
-            dataIndex : 'phone_number',
-            key : 'phone_number',
+            dataIndex : 'phoneNumber',
+            key : 'phoneNumber',
             className : 'col-xs-5'
         }];
         const data = this.state.data;
