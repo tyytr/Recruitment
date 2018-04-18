@@ -30,8 +30,9 @@ public class AdminController {
     }
 
     @PostMapping("/check")
-    public RestResp checkCompany(List<String> ids){
-        return adminService.checkCompany(ids);
+    public RestResp checkCompany(String[] data){
+        System.out.println(data);
+        return adminService.checkCompany(data);
     }
 
     @PostMapping("/destroy")

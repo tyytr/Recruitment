@@ -8,6 +8,7 @@ import Singout from './components/auth/singout'
 import Header from './components/common/header';
 import AdminReviewCompany from './components/adminReviewCompany';
 import PersonalJobOffers from './components/personalJobOffers';
+import PersonalResume from './components/personalResume';
 
 
 ReactDOM.render(
@@ -20,6 +21,8 @@ ReactDOM.render(
                     <Route path='/singout' component={Singout} />
                     <Route path='/adminReviewCompany' component={AdminReviewCompany} />
                     <Route path='/personalJobOffers' component={PersonalJobOffers} />
+                    <Route path='/personalResume' component={PersonalResume} />
+
 
                     <Route path='/' component={Home} />
                 </Switch>

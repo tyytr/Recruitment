@@ -187,8 +187,8 @@ export function adminReviewAgree(data) {
 export function adminReviewDisagree(data) {
     console.log(data);
     $.ajax({
-        type : "GET",
-        url : `${ROOT_URL}/admin/adviceAgree`,
+        type : "post",
+        url : `${ROOT_URL}/admin/destroy`,
         cache : false,
         traditional: true,
         data : {"data":data},
