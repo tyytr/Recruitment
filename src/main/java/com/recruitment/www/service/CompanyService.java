@@ -32,7 +32,7 @@ public class CompanyService {
 
         Company currentCompany= companyRepo.findByUsername(company.getUsername());
 
-        if (null == currentCompany){
+        if (null == currentCompany && null != company.getUsername() && null != company.getPassword() && null != company.getUsername().trim() && "true".equals(company.getAgreement())){
             company.setToken(Token.COMPANY.getNumber());
             company.setAble(Able.DISABLE.getNumber());
             companyRepo.save(company);
@@ -91,7 +91,7 @@ public class CompanyService {
      */
     public RestResp findDisableCompany(String username){
 
-        List<Company> allCompany = companyRepo.findByUsernameLikeAndAble(username,Able.DISABLE.getNumber());
+        List<Company> allCompany = companyRepo.findByUsernameLikeAndAble(username);
 
         allCompany.forEach(company -> {
             if (null == company.getKey() || company.getKey() != company.getId().toString()){

@@ -38,8 +38,8 @@ public class CompanyController {
         return companyService.findAllDisable();
     }
 
-    @GetMapping("/find")
-    public RestResp findDisableCompany(@RequestParam String username){
+    @GetMapping("/find/{username}")
+    public RestResp findDisableCompany(@PathVariable("username") String username){
         return companyService.findDisableCompany(username);
     }
 }

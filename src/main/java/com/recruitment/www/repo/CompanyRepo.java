@@ -35,10 +35,11 @@ public interface CompanyRepo extends CrudRepository<Company,Long>{
 
 
     /**
-     * 模糊查询
-     * @param
-     * @return
+     * 模糊查询 查询未审核的公司
+     * @param username 公司模糊名
+     * @return 公司列表
      */
-    List<Company> findByUsernameLikeAndAble(String username, Integer able);
+    @Query(value = "SELECT * FROM tbl_company WHERE username LIKE %?1% AND able=0",nativeQuery = true)
+    List<Company> findByUsernameLikeAndAble(String username);
 
 }
