@@ -114,11 +114,11 @@ class AdminReviewCompanyHandle extends Component{
                         onSearch={value => {
                             console.log(value);
                             $.ajax({
-                                type : "POST",
-                                url : `${ROOT_URL}/search/searchAdvice`,
-                                cache : false,
+                                type : "GET",
+                                url : `${ROOT_URL}/company/find/${value}`,
+                                // cache : false,
                                 traditional: true,
-                                data : {"search":value},
+                                // data : {"search":value},
                                 // dataType : "json",
                                 success : function (msg) {
                                     console.log(msg);

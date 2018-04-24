@@ -25,6 +25,6 @@ module.exports = {
         historyApiFallback: true,
     },
     resolve: {
-        extensions: [ ' ','.js', '.json', '.scss', '.ts']
+        extensions: [ ' ','.js', '.json', '.css', '.ts']
     }
 };

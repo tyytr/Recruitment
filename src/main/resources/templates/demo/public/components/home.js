@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 class Home extends Component{
     constructor(props) {
         super(props);

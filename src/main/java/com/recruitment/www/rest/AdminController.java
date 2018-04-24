@@ -36,8 +36,9 @@ public class AdminController {
     }
 
     @PostMapping("/destroy")
-    public RestResp destroyCompany(List<String> ids){
-        return adminService.destroyCompany(ids);
+    public RestResp destroyCompany(String[] data){
+        System.out.println(data);
+        return adminService.destroyCompany(data);
     }
 
 }

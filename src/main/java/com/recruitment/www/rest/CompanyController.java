@@ -13,8 +13,8 @@ import javax.annotation.Resource;
  * @Date: Create in 下午1:34 2018/4/13
  * @Modified By:
  */
-@RestController
 @CrossOrigin
+@RestController
 @RequestMapping("/company")
 public class CompanyController {
 

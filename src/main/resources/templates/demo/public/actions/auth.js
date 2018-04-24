@@ -175,7 +175,7 @@ export function adminReviewAgree(data) {
         success : function (msg) {
             console.log(msg);
             if (msg.status === 1){
-                // window.location.href = `${ROOT_URLF}/admin`;
+                window.location.href = `${ROOT_URLF}/adminReviewCompany`;
             }
         },
         error : function (err) {
@@ -196,7 +196,7 @@ export function adminReviewDisagree(data) {
         success : function (msg) {
             console.log(msg);
             if (msg.status === 1){
-                // window.location.href = `${ROOT_URLF}/admin`;
+                window.location.href = `${ROOT_URLF}/adminReviewCompany`;
             }
         },
         error : function (err) {

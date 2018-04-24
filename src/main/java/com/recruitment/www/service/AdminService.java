@@ -75,14 +75,20 @@ public class AdminService {
         return RestResp.success("审核通过",companyIds);
 //    }
     }
-    public RestResp destroyCompany(List<String> companyIds){
+    public RestResp destroyCompany(String[] companyIds){
 
-        companyIds.forEach(companyId -> {
-
-            Optional<Company> company = companyRepo.findById(Long.valueOf(companyId));
+        for (String ids:
+                companyIds) {
+            Optional<Company> company = companyRepo.findById(Long.valueOf(ids));
             company.get().setAble(Able.DISTROY.getNumber());
             companyRepo.save(company.get());
-        });
+        }
+//        companyIds.forEach(companyId -> {
+//
+//            Optional<Company> company = companyRepo.findById(Long.valueOf(companyId));
+//            company.get().setAble(Able.DISTROY.getNumber());
+//            companyRepo.save(company.get());
+//        });
         return RestResp.success("审核拒绝",companyIds);
 
     }
