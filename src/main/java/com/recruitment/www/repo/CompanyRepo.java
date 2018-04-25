@@ -6,7 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.nio.file.OpenOption;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author: Gaoyp
@@ -41,5 +43,7 @@ public interface CompanyRepo extends CrudRepository<Company,Long>{
      */
     @Query(value = "SELECT * FROM tbl_company WHERE username LIKE %?1% AND able=0",nativeQuery = true)
     List<Company> findByUsernameLikeAndAble(String username);
+
+    Optional<Company> findById (Long id);
 
 }
