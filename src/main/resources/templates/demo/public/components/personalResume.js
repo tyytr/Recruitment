@@ -4,213 +4,162 @@
  * @Description:
 */
 import React,{Component} from 'react';
-import 'antd/dist/antd.css';
 import {ROOT_URL} from "../actions/type";
 import axios from 'axios';
-import {Select, Tabs} from "antd";
+import { Radio , DatePicker , Upload, Button, Icon, message } from "antd";
 import {singupAction, singupCompanyAction} from "../actions/auth";
 import {ROOT_URLF} from "../actions/type";
+import 'antd/dist/antd.css';
 
 
 class PersonalResume extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            userName : "",
-            phone : "",
-            passWord : "",
-            rPassWord : "",
-            isAgree : false,
-            nameHelp : "",
-            phoneHelp : "",
-            wordHelp : "",
-            rWordHelp : "",
+            // value: "",
+            fileList: [],
+            uploading: false,
 
-            userName1 : "",
-            phone1 : "",
-            passWord1 : "",
-            rPassWord1 : "",
-            isAgree1 : false,
-            nameHelp1 : "",
-            phoneHelp1 : "",
-            wordHelp1 : "",
-            rWordHelp1 : ""
+            University : "",
+            Major : "",
+            Date : "",
+            City : "",
+            Experience : "",
+            Salary : "",
+
+            UniversityHelp : "",
+            MajorHelp : "",
+            DateHelp : "",
+            CityHelp : "",
+            ExperienceHelp : "",
+            SalaryHelp : "",
+
         };
     }
 
-    //username change
-    changeUsername(e) {
-        let username = e.target.value;
-        this.setState({userName: username});
-        console.log(this.state.userName);
+    //University change
+    changeUniversity(e) {
+        let University = e.target.value;
+        this.setState({University: University});
+        console.log(this.state.University);
     }
 
-    //phone change
-    changePhone(e){
-        let phone = e.target.value;
-        this.setState({phone : phone });
-        console.log(this.state.phone);
+    //Major change
+    changeMajor(e){
+        let Major = e.target.value;
+        this.setState({Major : Major });
+        console.log(this.state.Major);
     }
 
-    //password change
-    changePassword(e) {
-        let password = e.target.value;
-        this.setState({passWord: password});
-        console.log(this.state.passWord);
+    // Date change
+    changeDate (date, dateString) {
+        let Date = dateString;
+        this.setState({Date : Date});
+        console.log(this.state.Date);
     }
 
-    //rPassword change
-    changeRPassword(e) {
-        let rPassword = e.target.value;
-        this.setState({rPassWord: rPassword});
-        console.log(this.state.rPassWord);
+    //City change
+    changeCity(e) {
+        let City = e.target.value;
+        this.setState({City: City});
+        console.log(this.state.City);
     }
 
-    //isAgree
-    handleAgree(e){
-        let isChecked = e.target.checked;
-        if(isChecked){
-            this.setState({isAgree: true});
-        }else {
-            this.setState({isAgree: false});
-        }
-        console.log(this.state.isAgree);
+    //Salary change
+    changeSalary(e) {
+        let Salary = e.target.value;
+        this.setState({Salary: Salary});
+        console.log(this.state.Salary);
     }
 
     //handleClick
     handleClick() {
+        const id = localStorage.getItem("userId");
+        const username = localStorage.getItem("username");
+        const phone_number = localStorage.getItem("phoneNumber");
         const myDate = new Date();
         const time = myDate.toLocaleString();
         const data = {
-            username: this.state.userName,
-            password: this.state.passWord,
-            // rpassword : this.state.rPassWord,
-            phoneNumber : this.state.phone,
-            agreement : this.state.isAgree,
+            id : id,
+            username : username,
+            phoneNumber : phone_number,
+            University: this.state.University,
+            Major : this.state.Major,
+            Date : this.state.Date,
+            City : this.state.City,
+            Experience : this.state.Experience,
+            Salary : this.state.Salary,
             createTime : time,
-            // authorityInfo: this.state.authorityInfo,
         };
-        if (this.state.isAgree === false) {
-            alert("请先阅读《易换网用户协议》并且同意协议");
+
+        if (this.state.University === "" || this.state.University === null) {
+            this.setState({UniversityHelp: "* 毕业院校不能为空"});
+        } else if (this.state.Major === "" || this.state.Major === null) {
+            this.setState({
+                UniversityHelp: " ",
+                MajorHelp: "* 毕业专业不能为空"
+            });
+        } else if (this.state.Date === "" || this.state.Date === null) {
+            this.setState({
+                UniversityHelp: "",
+                MajorHelp: "",
+                DateHelp: "* 毕业时间不能为空"
+            });
+        }else if (this.state.City === "" || this.state.City === null) {
+            this.setState({
+                UniversityHelp: "",
+                MajorHelp: "",
+                DateHelp: "",
+                CityHelp: "* 工作城市不能为空"
+            });
+        }else if (this.state.Experience === "" || this.state.Experience === null) {
+            this.setState({
+                UniversityHelp: "",
+                MajorHelp: "",
+                DateHelp: "",
+                CityHelp: "",
+                ExperienceHelp: "* 工作经验不能为空"
+            });
+        } else if (this.state.Salary === "" || this.state.Salary === null) {
+            this.setState({
+                UniversityHelp: "",
+                MajorHelp: "",
+                DateHelp: "",
+                CityHelp: "",
+                ExperienceHelp: "",
+                SalaryHelp: "* 期望薪水不能为空"
+            })
         } else {
-            if (this.state.userName === "" || this.state.userName === null) {
-                this.setState({nameHelp: "* 用户名不能为空"});
-            } else if (this.state.phone === "" || this.state.phone === null) {
-                this.setState({
-                    nameHelp: " ",
-                    phoneHelp: "* 电话号码不能为空"
-                });
-            } else if (this.state.passWord === "" || this.state.passWord === null) {
-                this.setState({
-                    nameHelp: "",
-                    phoneHelp: "",
-                    wordHelp: "* 密码不能为空"
-                });
-            } else if (this.state.rPassWord === "" || this.state.passWord !== this.state.rPassWord) {
-                this.setState({
-                    nameHelp: "",
-                    phoneHelp: "",
-                    wordHelp: "",
-                    rWordHelp: "* 两次密码不一致"
-                })
-            } else {
-                this.setState({ //清除提示文字
-                    nameHelp: "",
-                    phoneHelp: "",
-                    wordHelp: "",
-                    rWordHelp: ""
-                });
-                singupAction(data);
-            }
+            this.setState({ //清除提示文字
+                UniversityHelp: "",
+                MajorHelp: "",
+                DateHelp: "",
+                CityHelp: "",
+                ExperienceHelp: "",
+                SalaryHelp: ""
+            });
+            // singupAction(data);
         }
     }
 
-    //username change
-    changeUsername1(e) {
-        let username = e.target.value;
-        this.setState({userName1: username});
-        console.log(this.state.userName1);
-    }
-
-    //phone change
-    changePhone1(e){
-        let phone = e.target.value;
-        this.setState({phone1 : phone });
-        console.log(this.state.phone1);
-    }
-
-    //password change
-    changePassword1(e) {
-        let password = e.target.value;
-        this.setState({passWord1: password});
-        console.log(this.state.passWord1);
-    }
-
-    //rPassword change
-    changeRPassword1(e) {
-        let rPassword = e.target.value;
-        this.setState({rPassWord1: rPassword});
-        console.log(this.state.rPassWord1);
-    }
-
-    //isAgree
-    handleAgree1(e){
-        let isChecked = e.target.checked;
-        if(isChecked){
-            this.setState({isAgree1: true});
-        }else {
-            this.setState({isAgree1: false});
-        }
-        console.log(this.state.isAgree1);
-    }
-    //handleCompanyClick
-    handleCompanyClick() {
-        const myDate = new Date();
-        const time = myDate.toLocaleString();
-        const data = {
-            username: this.state.userName1,
-            password: this.state.passWord1,
-            // rpassword : this.state.rPassWord1,
-            phoneNumber : this.state.phone1,
-            agreement : this.state.isAgree1,
-            createTime : time,
-            // authorityInfo: this.state.authorityInfo,
-        };
-        if (this.state.isAgree1 === false) {
-            alert("请先阅读《易换网用户协议》并且同意协议");
-        } else {
-            if (this.state.userName1 === "" || this.state.userName1 === null) {
-                this.setState({nameHelp1: "* 企业名不能为空"});
-            } else if (this.state.phone1 === "" || this.state.phone1 === null) {
-                this.setState({
-                    nameHelp1: " ",
-                    phoneHelp1: "* 电话号码不能为空"
-                });
-            } else if (this.state.passWord1 === "" || this.state.passWord1 === null) {
-                this.setState({
-                    nameHelp1: "",
-                    phoneHelp1: "",
-                    wordHelp1: "* 密码不能为空"
-                });
-            } else if (this.state.rPassWord1 === "" || this.state.passWord1 !== this.state.rPassWord1) {
-                this.setState({
-                    nameHelp1: "",
-                    phoneHelp1: "",
-                    wordHelp1: "",
-                    rWordHelp1: "* 两次密码不一致"
-                })
-            } else {
-                this.setState({ //清除提示文字
-                    nameHelp1: "",
-                    phoneHelp1: "",
-                    wordHelp1: "",
-                    rWordHelp1: ""
-                });
-                singupCompanyAction(data);
-            }
-        }
-    }
     render() {
+        const props = {
+            name: 'file',
+            action: '//jsonplaceholder.typicode.com/posts/',
+            headers: {
+                authorization: 'authorization-text',
+            },
+            onChange(info) {
+                if (info.file.status !== 'uploading') {
+                    console.log(info.file, info.fileList);
+                }
+                if (info.file.status === 'done') {
+                    message.success(`${info.file.name} file uploaded successfully`);
+                } else if (info.file.status === 'error') {
+                    message.error(`${info.file.name} file upload failed.`);
+                }
+            },
+        };
         return (
             <div className={"container"}>
                 <div className={"row"}>
@@ -218,30 +167,64 @@ class PersonalResume extends Component{
                         <form className={"col-md-6 col-md-offset-3"}>
                             <h2 style={{textAlign: "center"}}>简历中心</h2>
                                 <div className="form-group">
-                                    <label htmlFor="username">用户名</label>
-                                    <input type="text" name="username" ref="username" className="form-control"
-                                           placeholder="用户名" onChange={this.changeUsername.bind(this)}/>
-                                    <span>{this.state.nameHelp}</span>
+                                    <label htmlFor="University">毕业院校</label>
+                                    <input type="text" name="University" ref="University" className="form-control"
+                                           placeholder="毕业院校" onChange={this.changeUniversity.bind(this)}/>
+                                    <span>{this.state.UniversityHelp}</span>
                                 </div>
                                 <div className="form-group">
-                                    <label className="exampleInputPassword1">电话</label>
-                                    <input type="phone" name="phone" className="form-control" placeholder="电话" onChange={this.changePhone.bind(this)} />
-                                    <span>{this.state.phoneHelp}</span>
+                                    <label className="exampleInputCity1">毕业专业</label>
+                                    <input type="text" name="Major" className="form-control" placeholder="毕业专业" onChange={this.changeMajor.bind(this)} />
+                                    <span>{this.state.MajorHelp}</span>
                                 </div>
                                 <div className="form-group">
-                                    <label className="exampleInputPassword1">密码</label>
-                                    <input type="password" name="password" className="form-control" placeholder="密码"
-                                           onChange={this.changePassword.bind(this)}/>
-                                    <span>{this.state.wordHelp}</span>
+                                    <label className="exampleInputCity1">毕业时间</label><br/>
+                                    <DatePicker onChange={ this.changeDate.bind(this)}/>
+                                    <span>{this.state.DateHelp}</span>
                                 </div>
                                 <div className="form-group">
-                                    <label className="exampleInputPassword1">确认密码</label>
-                                    <input type="password" name="rpassword" className="form-control" placeholder="确认密码"
-                                           onChange={this.changeRPassword.bind(this)}/>
-                                    <span>{this.state.rWordHelp}</span>
+                                    <label className="exampleInputCity1">工作城市</label>
+                                    <input type="text" name="City" className="form-control" placeholder="工作城市"
+                                           onChange={this.changeCity.bind(this)}/>
+                                    <span>{this.state.CityHelp}</span>
                                 </div>
+                                <div className="form-group">
+                                    <label className="exampleInputCity1">工作经验</label>
+                                    <div className="form-group">
+                                        <Radio.Group onChange={ (e) => {
+                                            console.log('radio checked', e.target.value);
+                                            this.setState({
+                                                Experience: e.target.value,
+                                            });
+                                        }} value={this.state.Experience}>
+                                            <Radio value={"应届生"}>应届生</Radio>
+                                            <Radio value={"1"}>1年</Radio>
+                                            <Radio value={"2"}>2年</Radio>
+                                            <Radio value={"3"}>3年</Radio>
+                                            <Radio value={"4"}>3年以上</Radio>
+                                        </Radio.Group>
+                                    </div>
+                                    <span>{this.state.ExperienceHelp}</span>
+                                </div>
+                                <div className="form-group">
+                                    <label className="exampleInputCity1">期望薪水</label>
+                                    <input type="Salary" name="Salary" className="form-control" placeholder="期望薪水"
+                                           onChange={this.changeSalary.bind(this)}/>
+                                    <span>{this.state.SalaryHelp}</span>
+                                </div>
+                                <div className="form-group">
+                                    <label className="exampleInputCity1">上传简历</label>
+                                    <div>
+                                        <Upload {...props}>
+                                            <Button>
+                                                <Icon type="upload" /> 上传文件
+                                            </Button>
+                                        </Upload>
+                                    </div>
+                                </div>
+
                                 <button type="button" className="btn btn-default text-center"
-                                        onClick={this.handleClick.bind(this, this.state)}>注册
+                                        onClick={this.handleClick.bind(this, this.state)}>提交简历
                                 </button>
                         </form>
                     </div>

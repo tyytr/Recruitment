@@ -9,6 +9,7 @@ import Header from './components/common/header';
 import AdminReviewCompany from './components/adminReviewCompany';
 import PersonalJobOffers from './components/personalJobOffers';
 import PersonalResume from './components/personalResume';
+import CompanyRelease from './components/companyRelease'
 
 
 ReactDOM.render(
@@ -22,6 +23,7 @@ ReactDOM.render(
                     <Route path='/adminReviewCompany' component={AdminReviewCompany} />
                     <Route path='/personalJobOffers' component={PersonalJobOffers} />
                     <Route path='/personalResume' component={PersonalResume} />
+                    <Route path='/release' component={CompanyRelease} />
 
 
                     <Route path='/' component={Home} />

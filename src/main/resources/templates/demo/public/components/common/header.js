@@ -44,6 +44,7 @@ class Header extends Component{
                                     <Link to="/singup" >注册</Link>
                                 </li>
                             </ul>
+                            {/*个人*/}
                             <ul className={`nav navbar-nav navbar-right ${(loginStatus==="true")&&(token==="2")?"":"hidden"}`}>
                                 <li className=""><Link to="/home" >首页</Link></li>
                                 <li><a href="/personalJobOffers">招聘信息</a></li>
@@ -56,10 +57,11 @@ class Header extends Component{
                                     <Link to="/" onClick={()=> {localStorage.clear();}} >退出</Link>
                                 </li>
                             </ul>
+                            {/*企业*/}
                             <ul className={`nav navbar-nav navbar-right ${(loginStatus==="true")&&(token==="3")?"":"hidden"}`}>
                                 {/*<li className=""><Link to="/home" >首页</Link></li>*/}
                                 {/*<li><a href="/adminNotice">公告</a></li>*/}
-                                {/*<li><a href="/adminAdvice">建议</a></li>*/}
+                                <li><a href="/release">发布招聘</a></li>
                                 <li>
                                     <Link to="" style={{color:"#1890ff"}} >欢迎企业：{username}</Link>
                                 </li>
@@ -68,6 +70,7 @@ class Header extends Component{
                                     <Link to="/" onClick={()=> {localStorage.clear();}} >退出</Link>
                                 </li>
                             </ul>
+                            {/*管理员*/}
                             <ul className={`nav navbar-nav navbar-right ${(loginStatus==="true")&&(token==="4")?"":"hidden"}`}>
                                 {/*<li className=""><Link to="/home" >首页</Link></li>*/}
                                 <li><a href="/adminReviewCompany">公司审核</a></li>
