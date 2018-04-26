@@ -17,8 +17,9 @@ class PersonalResume extends Component{
         super(props);
         this.state = {
             // value: "",
-            fileList: [],
+            fileList: [0],
             uploading: false,
+            url: "",
 
             University : "",
             Major : "",
@@ -80,6 +81,7 @@ class PersonalResume extends Component{
         const myDate = new Date();
         const time = myDate.toLocaleString();
         const data = {
+            url : this.state.url,
             id : id,
             resume : id,
             username : username,
@@ -144,6 +146,7 @@ class PersonalResume extends Component{
     }
 
     render() {
+        const _this=this;
         const props = {
             name: 'file',
             action: `${ROOT_URL}/file`,
@@ -151,10 +154,14 @@ class PersonalResume extends Component{
                 authorization: 'authorization-text',
             },
             onChange(info) {
+                // let fileList = info.fileList;
+                //
+                // fileList = fileList.slice(-2);
                 if (info.file.status !== 'uploading') {
                     console.log(info.file, info.fileList);
                 }
                 if (info.file.status === 'done') {
+                    _this.setState({url : info.fileList[0].response});
                     message.success(`${info.file.name} file uploaded successfully`);
                 } else if (info.file.status === 'error') {
                     message.error(`${info.file.name} file upload failed.`);

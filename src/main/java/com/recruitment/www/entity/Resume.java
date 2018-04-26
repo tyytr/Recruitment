@@ -21,6 +21,7 @@ public class Resume {
     @GeneratedValue
     private Long id;
     private Long resume;
+    private String url;
     private String username;
     private String phoneNumber;
     private String university;
