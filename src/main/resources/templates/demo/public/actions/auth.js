@@ -30,10 +30,10 @@ export function singupAction(data) {
         dataType : "json",
         success : function (msg) {
             console.log(msg);
-            if (msg.status === "1") {
+            if (msg.status === 1) {
                 alert(localStorage.getItem('username')+"  注册成功！");
                 window.location.href = `${ROOT_URLF}/singin`;
-            }else if (msg.status === "0"){
+            }else if (msg.status === 0){
                 alert(msg.message);
                 window.location.href = `${ROOT_URLF}`;
             }else{
@@ -57,7 +57,7 @@ export function singupCompanyAction(data) {
         dataType : "json",
         success : function (msg) {
             console.log(msg);
-            if (msg.status === "1") {
+            if (msg.status === 1) {
                 alert(localStorage.getItem('username')+"  的注册信息已经提交，等待管理员审核！");
                 window.location.href = `${ROOT_URLF}`;
             }else if (msg.status === "0"){
@@ -207,6 +207,38 @@ export function adminReviewDisagree(data) {
 }
 
 
+
+
+/**
+ * @author LiJun
+ * @date 2018/4/26
+ * @Description: 个人发布
+*/
+export function personalResume(data) {
+    console.log(data);
+    $.ajax({
+        type : "POST",
+        url : `${ROOT_URL}/resume/add`,
+        cache : false,
+        traditional: true,
+        data : data,
+        dataType : "json",
+        success : function (msg) {
+            console.log(msg);
+            if (msg.status === 1) {
+                alert(msg.message);
+                // window.location.href = `${ROOT_URLF}/personalResume`;
+            }else{
+                alert(msg.message);
+                // window.location.href = `${ROOT_URLF}`;
+            }
+        },
+        error : function (err) {
+            console.log(err);
+            alert("与后台交互走error");
+        }
+    });
+}
 
 
 

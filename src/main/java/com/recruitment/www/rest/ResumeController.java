@@ -13,6 +13,7 @@ import javax.annotation.Resource;
  * @Date: Create in 上午11:21 2018/4/25
  * @Modified By:
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/resume")
 public class ResumeController {
@@ -23,7 +24,8 @@ public class ResumeController {
 
 
     @PostMapping("/add")
-    public RestResp addResume(@RequestBody Resume resume){
+    public RestResp addResume(Resume resume){
+        System.out.println(resume);
         return resumeService.addResume(resume);
     }
 

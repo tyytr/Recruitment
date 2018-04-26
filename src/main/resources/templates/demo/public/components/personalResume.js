@@ -7,7 +7,7 @@ import React,{Component} from 'react';
 import {ROOT_URL} from "../actions/type";
 import axios from 'axios';
 import { Radio , DatePicker , Upload, Button, Icon, message } from "antd";
-import {singupAction, singupCompanyAction} from "../actions/auth";
+import {personalResume} from "../actions/auth";
 import {ROOT_URLF} from "../actions/type";
 import 'antd/dist/antd.css';
 
@@ -81,14 +81,15 @@ class PersonalResume extends Component{
         const time = myDate.toLocaleString();
         const data = {
             id : id,
+            resume : id,
             username : username,
             phoneNumber : phone_number,
-            University: this.state.University,
-            Major : this.state.Major,
-            Date : this.state.Date,
-            City : this.state.City,
-            Experience : this.state.Experience,
-            Salary : this.state.Salary,
+            university: this.state.University,
+            major : this.state.Major,
+            date : this.state.Date,
+            city : this.state.City,
+            experience : this.state.Experience,
+            salary : this.state.Salary,
             createTime : time,
         };
 
@@ -138,14 +139,14 @@ class PersonalResume extends Component{
                 ExperienceHelp: "",
                 SalaryHelp: ""
             });
-            // singupAction(data);
+            personalResume(data);
         }
     }
 
     render() {
         const props = {
             name: 'file',
-            action: '//jsonplaceholder.typicode.com/posts/',
+            action: `${ROOT_URL}/file`,
             headers: {
                 authorization: 'authorization-text',
             },

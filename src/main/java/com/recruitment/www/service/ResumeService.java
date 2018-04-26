@@ -32,25 +32,25 @@ public class ResumeService {
 
     public RestResp addResume(Resume resume){
 
-        if (null == resume.getUsername() || null == resume.getUsername().trim()){
-            return RestResp.fail("用户名不能为空");
-        }
+//        if (null == resume.getUsername() || null == resume.getUsername().trim()){
+//            return RestResp.fail("用户名不能为空");
+//        }
+//
+//        if (null == resume.getPhoneNumber() || null == resume.getPhoneNumber().trim() || RegexUtils.match(resume.getPhoneNumber(),RegexUtils.REGEX_PHONE)){
+//            return RestResp.fail("请输入正确的手机号");
+//        }
 
-        if (null == resume.getPhoneNumber() || null == resume.getPhoneNumber().trim() || RegexUtils.match(resume.getPhoneNumber(),RegexUtils.REGEX_PHONE)){
-            return RestResp.fail("请输入正确的手机号");
-        }
 
-
-        Resume currentResume = resumeRepo.findOne(resume.getId());
+        Resume currentResume = resumeRepo.findOne(resume.getResume());
 
         if (null != currentResume){
             resumeRepo.save(resume);
             return RestResp.success("成功修改简历");
+        }else {
+
+            resumeRepo.save(resume);
+            return RestResp.success("新增简历成功");
         }
-
-        resumeRepo.save(resume);
-        return RestResp.success("新增简历成功");
-
     }
 
     /**

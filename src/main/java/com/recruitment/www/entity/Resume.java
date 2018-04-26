@@ -20,6 +20,7 @@ public class Resume {
     @Id
     @GeneratedValue
     private Long id;
+    private Long resume;
     private String username;
     private String phoneNumber;
     private String university;
@@ -31,7 +32,7 @@ public class Resume {
     //期待薪资
     private String salary;
 
-    private Date createTime;
+    private String createTime;
     @Column(name = "r_key")
     private String key;
 
