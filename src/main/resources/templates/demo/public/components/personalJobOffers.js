@@ -41,7 +41,7 @@ class PersonalJobOffers extends Component{
     }
     render(){
         const columns = [{
-            title : '公司名称名',
+            title : '公司名称',
             dataIndex : 'username',
             key : 'username',
             // className : 'col-xs-5'
@@ -51,6 +51,34 @@ class PersonalJobOffers extends Component{
             dataIndex : 'phoneNumber',
             key : 'phoneNumber',
             // className : 'col-xs-5'
+        },{
+            title : '招聘职位',
+            dataIndex : 'position',
+            key : 'position'
+        },{
+            title : '学历要求',
+            dataIndex : 'education',
+            key : 'education'
+        },{
+            title : '工作经验',
+            dataIndex : 'experience',
+            key : 'experience'
+        },{
+            title : '工作地点',
+            dataIndex : 'city',
+            key : 'city'
+        },{
+            title : '招聘人数',
+            dataIndex : 'number',
+            key : 'number'
+        },{
+            title : '最低薪资',
+            dataIndex : 'salary',
+            key : 'salary'
+        },{
+            title : '职位描述',
+            dataIndex : 'details',
+            key : 'details'
         }];
         const data = this.state.data;
         // console.log(data);
@@ -71,7 +99,8 @@ class PersonalJobOffers extends Component{
         const hasSelected = selectedRowKeys.length > 0;
         const _this = this;
         return (
-            <div>
+            <div className={"container"}>
+                <div className={"row g-my-100"}>
                 <div className={"col-sm-6"} style={{ marginBottom: 16 }}>
                     <Button
                         type="primary"
@@ -148,6 +177,7 @@ class PersonalJobOffers extends Component{
                     />
                 </div>
                 <Table className={"col-sm-12"} rowSelection={rowSelection} columns={columns} dataSource={array} />
+                </div>
             </div>
         )
     }
