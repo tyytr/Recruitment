@@ -12,7 +12,7 @@ import React,{Component} from 'react';
 import {ROOT_URL} from "../actions/type";
 import axios from 'axios';
 import {Radio, DatePicker, Upload, Button, Icon, message, Select, InputNumber, Input} from "antd";
-import {singupAction, singupCompanyAction} from "../actions/auth";
+import {companyRelease, singupAction, singupCompanyAction} from "../actions/auth";
 import {ROOT_URLF} from "../actions/type";
 import 'antd/dist/antd.css';
 
@@ -108,6 +108,7 @@ class CompanyRelease extends Component{
         const time = myDate.toLocaleString();
         const data = {
             id : id,
+            release_id : id,
             username : username,
             phoneNumber : phone_number,
             position: this.state.position,
@@ -220,7 +221,7 @@ class CompanyRelease extends Component{
                 personHelp: "",
                 phoneHelp: ""
             });
-            // singupAction(data);
+            companyRelease(data);
         }
     }
 

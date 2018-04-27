@@ -241,6 +241,67 @@ export function personalResume(data) {
 }
 
 
+/**
+ * @author LiJun
+ * @date 2018/4/27
+ * @Description: 企业招聘
+*/
+export function companyRelease(data) {
+    console.log(data);
+    $.ajax({
+        type : "POST",
+        url : `${ROOT_URL}/release/add`,
+        cache : false,
+        traditional: true,
+        data : data,
+        dataType : "json",
+        success : function (msg) {
+            console.log(msg);
+            if (msg.status === 1) {
+                alert(msg.message);
+                // window.location.href = `${ROOT_URLF}/personalResume`;
+            }else{
+                alert(msg.message);
+                // window.location.href = `${ROOT_URLF}`;
+            }
+        },
+        error : function (err) {
+            console.log(err);
+            alert("与后台交互走error");
+        }
+    });
+}
+
+
+
+/**
+ * @author LiJun
+ * @date 2018/4/27
+ * @Description: 投递简历
+*/
+export function JobOffersSend(data) {
+    console.log(data);
+    $.ajax({
+        type : "post",
+        url : `${ROOT_URL}/jobOffers/send`,
+        cache : false,
+        traditional: true,
+        data : data,
+        success : function (msg) {
+            console.log(msg);
+            if (msg.status === 1){
+                // window.location.href = `${ROOT_URLF}/personalJobOffers`;
+            }
+        },
+        error : function (err) {
+            console.log(err);
+            alert("与后台交互走error");
+        }
+    });
+}
+
+
+
 
 
 

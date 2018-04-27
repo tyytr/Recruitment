@@ -13,6 +13,7 @@ import {Input,Table,Button} from 'antd';
 import 'antd/dist/antd.css';
 import {ROOT_URL} from "../actions/type";
 import axios from 'axios';
+import {JobOffersSend} from "../actions/auth";
 
 class PersonalJobOffers extends Component{
     constructor(props) {
@@ -28,7 +29,7 @@ class PersonalJobOffers extends Component{
         };
     }
     componentDidMount(){
-        axios.get(`${ROOT_URL}/company/list`)
+        axios.get(`${ROOT_URL}/release/list`)
             .then(response =>{
                 console.log(response);
                 this.setState({data : response.data.data});
@@ -40,16 +41,16 @@ class PersonalJobOffers extends Component{
     }
     render(){
         const columns = [{
-            title : '用户名',
+            title : '公司名称名',
             dataIndex : 'username',
             key : 'username',
-            className : 'col-xs-5'
+            // className : 'col-xs-5'
             // render: text => <a href="#">{text}</a>,
         },{
             title : '联系方式',
-            dataIndex : 'phone_number',
-            key : 'phone_number',
-            className : 'col-xs-5'
+            dataIndex : 'phoneNumber',
+            key : 'phoneNumber',
+            // className : 'col-xs-5'
         }];
         const data = this.state.data;
         // console.log(data);
@@ -78,7 +79,11 @@ class PersonalJobOffers extends Component{
                             this.setState({ loadingAgree: true });
                             // ajax request after empty completing
                             // console.log(typeof (selectedRowKeys));
-                            adminReviewAgree(selectedRowKeys);
+                            const data = {
+                                release : selectedRowKeys[0],
+                                user : localStorage.getItem("userId"),
+                            };
+                            JobOffersSend(data);
                             setTimeout(() => {
                                 this.setState({
                                     selectedRowKeys: [],
@@ -92,24 +97,24 @@ class PersonalJobOffers extends Component{
                     >
                         投递简历
                     </Button>
-                    <Button
-                        type="primary"
-                        onClick={() => {
-                            this.setState({ loadingDisagree: true });
-                            // ajax request after empty completing
-                            adminReviewDisagree(selectedRowKeys);
-                            setTimeout(() => {
-                                this.setState({
-                                    selectedRowKeys: [],
-                                    loadingDisagree: false,
-                                });
-                            }, 1000);
-                        }}
-                        disabled={!hasSelected}
-                        loading={loadingDisagree}
-                    >
-                        查看详情
-                    </Button>
+                    {/*<Button*/}
+                        {/*type="primary"*/}
+                        {/*onClick={() => {*/}
+                            {/*this.setState({ loadingDisagree: true });*/}
+                            {/*// ajax request after empty completing*/}
+                            {/*adminReviewDisagree(selectedRowKeys);*/}
+                            {/*setTimeout(() => {*/}
+                                {/*this.setState({*/}
+                                    {/*selectedRowKeys: [],*/}
+                                    {/*loadingDisagree: false,*/}
+                                {/*});*/}
+                            {/*}, 1000);*/}
+                        {/*}}*/}
+                        {/*disabled={!hasSelected}*/}
+                        {/*loading={loadingDisagree}*/}
+                    {/*>*/}
+                        {/*查看详情*/}
+                    {/*</Button>*/}
                     <span style={{ marginLeft: 8 }}>
                         {hasSelected ? `选择 ${selectedRowKeys.length} 目标` : ''}
                     </span>
