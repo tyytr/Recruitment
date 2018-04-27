@@ -1,8 +1,8 @@
 package com.recruitment.www.service;
 
 import com.recruitment.www.common.RestResp;
-import com.recruitment.www.entity.JobOffers;
-import com.recruitment.www.repo.JobOffersRepo;
+import com.recruitment.www.entity.Offer;
+import com.recruitment.www.repo.OfferRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -10,21 +10,20 @@ import javax.annotation.Resource;
 
 @Service
 @Slf4j
-public class JobOffersService {
+public class OfferService {
     @Resource
-    private JobOffersRepo jobOffersRepo;
+    private OfferRepo offerRepo;
 
 
-
-    public RestResp sendJob(JobOffers jobOffers){
-        JobOffers news = jobOffersRepo.findByReleaseAndAndUser(jobOffers.getRelease(),jobOffers.getUser());
+    public RestResp sendJob(Offer offer){
+        Offer news = offerRepo.findByReleaseIdAndUserId(offer.getReleaseId(),offer.getUserId());
         if (null != news){
             return RestResp.success(1,"这条招聘信息已经投递",news);
         }else {
-            jobOffersRepo.save(jobOffers);
+            offerRepo.save(offer);
             return RestResp.success(1,"投递成功");
         }
-
+//        return RestResp.success(1,"投递成功");
     }
 
 }

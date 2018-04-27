@@ -6,18 +6,17 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table( name = "tbl_jobOffers")
-public class JobOffers {
+@Table(name = "tbl_offer")
+public class Offer {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    private String release;
-    private String user;
+    private String releaseId;
+    private String userId;
 
     @Column(name = "r_key")
     private String key;
-
-
 }
+

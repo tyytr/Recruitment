@@ -80,8 +80,8 @@ class PersonalJobOffers extends Component{
                             // ajax request after empty completing
                             // console.log(typeof (selectedRowKeys));
                             const data = {
-                                release : selectedRowKeys[0],
-                                user : localStorage.getItem("userId"),
+                                releaseId : selectedRowKeys[0],
+                                userId : localStorage.getItem("userId"),
                             };
                             JobOffersSend(data);
                             setTimeout(() => {

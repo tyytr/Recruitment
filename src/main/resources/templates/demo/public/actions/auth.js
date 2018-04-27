@@ -283,13 +283,14 @@ export function JobOffersSend(data) {
     console.log(data);
     $.ajax({
         type : "post",
-        url : `${ROOT_URL}/jobOffers/send`,
+        url : `${ROOT_URL}/offer/send`,
         cache : false,
         traditional: true,
         data : data,
         success : function (msg) {
             console.log(msg);
             if (msg.status === 1){
+                alert(msg.message);
                 // window.location.href = `${ROOT_URLF}/personalJobOffers`;
             }
         },

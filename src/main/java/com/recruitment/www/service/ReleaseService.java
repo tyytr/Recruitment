@@ -12,7 +12,8 @@ import java.util.List;
 @Service
 @Slf4j
 public class ReleaseService {
-    @Resource ReleaseRepo releaseRepo;
+    @Resource
+    private ReleaseRepo releaseRepo;
 
     public RestResp addRelease(Release release){
 
