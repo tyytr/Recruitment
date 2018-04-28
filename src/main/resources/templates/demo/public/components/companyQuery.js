@@ -34,8 +34,9 @@ class Query extends Component{
         };
     }
     componentDidMount(){
-        const id = localStorage.getItem("uerId");
-        axios.get(`${ROOT_URL}/offer/listOne?id=${id}`)
+        const ids = localStorage.getItem("userId");
+        console.log(ids);
+        axios.get(`${ROOT_URL}/offer/listOne/${ids}`)
             .then(response =>{
                 console.log(response);
                 this.setState({data : response.data.data});

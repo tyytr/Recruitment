@@ -21,4 +21,5 @@ public interface UserRepo extends CrudRepository<User,Long> {
      */
     User findByUsername(String username);
 
+
 }

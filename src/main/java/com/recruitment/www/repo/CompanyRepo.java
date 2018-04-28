@@ -46,4 +46,6 @@ public interface CompanyRepo extends CrudRepository<Company,Long>{
 
     Optional<Company> findById (Long id);
 
+//    Company findById1(Long id);
+
 }
