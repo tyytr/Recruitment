@@ -14,4 +14,7 @@ public interface OfferRepo extends CrudRepository<Offer,Long> {
 
     List<Offer> findById(Long id);
 
+
+    List<Offer> findByReleaseId(String releaseId);
+
 }

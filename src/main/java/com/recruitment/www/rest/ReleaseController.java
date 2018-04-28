@@ -26,7 +26,7 @@ public class ReleaseController {
     }
 
     @GetMapping("/find/{id}")
-    public RestResp findRelease(@PathVariable("id") String id){
-        return releaseService.findRelease(id);
+    public RestResp findRelease(@PathVariable("id") String releaseId){
+        return releaseService.findRelease(releaseId);
     }
 }
