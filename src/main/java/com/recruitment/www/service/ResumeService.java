@@ -41,13 +41,15 @@ public class ResumeService {
 //        }
 
 
-        Resume currentResume = resumeRepo.findOne(resume.getResume());
-
+//        Resume currentResume = resumeRepo.findOne(resume.getResume());
+        Resume currentResume = resumeRepo.findByResume(resume.getResume());
+        System.out.println(currentResume);
         if (null != currentResume){
+            resumeRepo.deleteByResume(resume.getResume());
+//            resumeRepo.deleteByResume(resume.getResume());
             resumeRepo.save(resume);
             return RestResp.success("成功修改简历");
         }else {
-
             resumeRepo.save(resume);
             return RestResp.success("新增简历成功");
         }

@@ -42,4 +42,9 @@ public class CompanyController {
     public RestResp findDisableCompany(@PathVariable("username") String username){
         return companyService.findDisableCompany(username);
     }
+
+//    @GetMapping("/linstOne")
+//    public RestResp searchById(Long ids){
+//        return companyService.searchById(ids);
+//    }
 }

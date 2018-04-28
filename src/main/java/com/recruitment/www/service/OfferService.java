@@ -26,4 +26,9 @@ public class OfferService {
 //        return RestResp.success(1,"投递成功");
     }
 
+
+//    public RestResp searchById(Offer offer){
+//        return offerRepo.findById(offer.getId());
+//    }
+
 }

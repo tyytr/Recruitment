@@ -10,6 +10,7 @@ import AdminReviewCompany from './components/adminReviewCompany';
 import PersonalJobOffers from './components/personalJobOffers';
 import PersonalResume from './components/personalResume';
 import CompanyRelease from './components/companyRelease'
+import CompanyQuery from './components/companyQuery';
 
 
 ReactDOM.render(
@@ -24,7 +25,7 @@ ReactDOM.render(
                     <Route path='/personalJobOffers' component={PersonalJobOffers} />
                     <Route path='/personalResume' component={PersonalResume} />
                     <Route path='/release' component={CompanyRelease} />
-
+                    <Route path='/query' component={CompanyQuery} />
 
                     <Route path='/' component={Home} />
                 </Switch>

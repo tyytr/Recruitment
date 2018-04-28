@@ -10,4 +10,6 @@ public interface OfferRepo extends CrudRepository<Offer,Long> {
 
     Offer findByReleaseIdAndUserId(String releaseId,String userId);
 
+    Offer findById(Long id);
+
 }

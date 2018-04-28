@@ -1,8 +1,13 @@
 /**
  * @author LiJun
- * @date 2018/4/13
+ * @date 2018/4/28
  * @Description:
 */
+/**
+ * @author LiJun
+ * @date 2018/4/13
+ * @Description:
+ */
 /**
  * @author LiJun
  * @date 2018/4/13
@@ -15,12 +20,10 @@ import {ROOT_URL} from "../actions/type";
 import axios from 'axios';
 import {JobOffersSend} from "../actions/auth";
 
-class PersonalJobOffers extends Component{
+class Query extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            value : "",
-
             tabPosition: 'left',
             isCheck : false,
             data: {},
@@ -31,7 +34,8 @@ class PersonalJobOffers extends Component{
         };
     }
     componentDidMount(){
-        axios.get(`${ROOT_URL}/release/list`)
+        const id = localStorage.getItem("uerId");
+        axios.get(`${ROOT_URL}/offer/listOne?id=${id}`)
             .then(response =>{
                 console.log(response);
                 this.setState({data : response.data.data});
@@ -40,6 +44,7 @@ class PersonalJobOffers extends Component{
             .catch((err) => {
                 alert(err);
             })
+
     }
     render(){
         const columns = [{
@@ -103,68 +108,64 @@ class PersonalJobOffers extends Component{
         return (
             <div className={"container"}>
                 <div className={"row g-my-100"}>
-                <div className={"col-sm-6"} style={{ marginBottom: 16 }}>
-                    <Button
-                        type="primary"
-                        onClick={() => {
-                            this.setState({ loadingAgree: true });
-                            // ajax request after empty completing
-                            // console.log(typeof (selectedRowKeys));
-                            const data = {
-                                releaseId : selectedRowKeys[0],
-                                userId : localStorage.getItem("userId"),
-                            };
-                            JobOffersSend(data);
-                            setTimeout(() => {
-                                this.setState({
-                                    selectedRowKeys: [],
-                                    loadingAgree: false,
-                                });
-                            }, 1000);
-                        }}
-                        disabled={!hasSelected}
-                        loading={loadingAgree}
-                        className={"g-mr-10"}
-                    >
-                        投递简历
-                    </Button>
-                    {/*<Button*/}
+                    <div className={"col-sm-6"} style={{ marginBottom: 16 }}>
+                        {/*<Button*/}
+                            {/*type="primary"*/}
+                            {/*onClick={() => {*/}
+                                {/*this.setState({ loadingAgree: true });*/}
+                                {/*// ajax request after empty completing*/}
+                                {/*// console.log(typeof (selectedRowKeys));*/}
+                                {/*const data = {*/}
+                                    {/*releaseId : selectedRowKeys[0],*/}
+                                    {/*userId : localStorage.getItem("userId"),*/}
+                                {/*};*/}
+                                {/*JobOffersSend(data);*/}
+                                {/*setTimeout(() => {*/}
+                                    {/*this.setState({*/}
+                                        {/*selectedRowKeys: [],*/}
+                                        {/*loadingAgree: false,*/}
+                                    {/*});*/}
+                                {/*}, 1000);*/}
+                            {/*}}*/}
+                            {/*disabled={!hasSelected}*/}
+                            {/*loading={loadingAgree}*/}
+                            {/*className={"g-mr-10"}*/}
+                        {/*>*/}
+                            {/*投递简历*/}
+                        {/*</Button>*/}
+                        {/*<Button*/}
                         {/*type="primary"*/}
                         {/*onClick={() => {*/}
-                            {/*this.setState({ loadingDisagree: true });*/}
-                            {/*// ajax request after empty completing*/}
-                            {/*adminReviewDisagree(selectedRowKeys);*/}
-                            {/*setTimeout(() => {*/}
-                                {/*this.setState({*/}
-                                    {/*selectedRowKeys: [],*/}
-                                    {/*loadingDisagree: false,*/}
-                                {/*});*/}
-                            {/*}, 1000);*/}
+                        {/*this.setState({ loadingDisagree: true });*/}
+                        {/*// ajax request after empty completing*/}
+                        {/*adminReviewDisagree(selectedRowKeys);*/}
+                        {/*setTimeout(() => {*/}
+                        {/*this.setState({*/}
+                        {/*selectedRowKeys: [],*/}
+                        {/*loadingDisagree: false,*/}
+                        {/*});*/}
+                        {/*}, 1000);*/}
                         {/*}}*/}
                         {/*disabled={!hasSelected}*/}
                         {/*loading={loadingDisagree}*/}
-                    {/*>*/}
+                        {/*>*/}
                         {/*查看详情*/}
-                    {/*</Button>*/}
-                    <span style={{ marginLeft: 8 }}>
+                        {/*</Button>*/}
+                        <span style={{ marginLeft: 8 }}>
                         {hasSelected ? `选择 ${selectedRowKeys.length} 目标` : ''}
                     </span>
-                </div>
-                <div className={"col-sm-6"}>
-                    <Input.Search
-                        placeholder="请输入搜索职位或公司名字"
-                        onSearch={value => {
-                            console.log(value);
-                            // _this.setState({value:value});
-                            if (null === value || undefined ===  value || "" === value) {
-                                alert("请输入搜索内容");
-                            }else {
+                    </div>
+                    <div className={"col-sm-6"}>
+                        <Input.Search
+                            placeholder="请输入搜索职位或公司名字"
+                            onSearch={value => {
+                                console.log(value);
                                 $.ajax({
-                                    type : "get",
-                                    url : `${ROOT_URL}/release/find/${_this.state.value}`,
+                                    type : "POST",
+                                    url : `${ROOT_URL}/search/searchAdvice`,
                                     cache : false,
                                     traditional: true,
-                                    // data : {"search":value},
+                                    data : {"search":value},
                                     // dataType : "json",
                                     success : function (msg) {
                                         console.log(msg);
@@ -178,16 +179,14 @@ class PersonalJobOffers extends Component{
                                         alert("与后台交互走error");
                                     }
                                 });
-                            }
-
-                        }}
-                        enterButton
-                    />
-                </div>
-                <Table className={"col-sm-12"} rowSelection={rowSelection} columns={columns} dataSource={array} />
+                            }}
+                            enterButton
+                        />
+                    </div>
+                    <Table className={"col-sm-12"} columns={columns} dataSource={array} />
                 </div>
             </div>
         )
     }
 }
-export default PersonalJobOffers;
+export default Query;

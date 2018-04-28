@@ -38,4 +38,30 @@ public class ReleaseService {
         });
         return RestResp.success(1,"查询公司发布的招聘信息成功",Release);
     }
+
+    /**
+     * 查询招聘信息
+     * @param
+     * @return
+     */
+    public RestResp findRelease(String id){
+        if (null == id){
+            List<Release> allRelease = releaseRepo.findAll();
+            return RestResp.success(1,allRelease);
+        }else {
+            List<Release> allRelease = releaseRepo.findByIdLikeAndAble(id);
+            allRelease.forEach(release -> {
+                if (null == release.getKey() || release.getKey() != release.getId().toString()){
+                    release.setKey(release.getId().toString());
+                    releaseRepo.save(release);
+                }
+            });
+            return RestResp.success(1,allRelease);
+        }
+
+
+
+    }
+
+
 }

@@ -60,7 +60,7 @@ class Header extends Component{
                             {/*企业*/}
                             <ul className={`nav navbar-nav navbar-right ${(loginStatus==="true")&&(token==="3")?"":"hidden"}`}>
                                 {/*<li className=""><Link to="/home" >首页</Link></li>*/}
-                                {/*<li><a href="/adminNotice">公告</a></li>*/}
+                                <li><a href="/query">查阅简历</a></li>
                                 <li><a href="/release">发布招聘</a></li>
                                 <li>
                                     <Link to="" style={{color:"#1890ff"}} >欢迎企业：{username}</Link>

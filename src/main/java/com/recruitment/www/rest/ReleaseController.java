@@ -24,4 +24,9 @@ public class ReleaseController {
     public RestResp listAll(){
         return releaseService.listAll();
     }
+
+    @GetMapping("/find/{id}")
+    public RestResp findRelease(@PathVariable("id") String id){
+        return releaseService.findRelease(id);
+    }
 }

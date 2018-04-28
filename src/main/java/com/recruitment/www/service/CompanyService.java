@@ -4,6 +4,7 @@ import com.recruitment.www.common.Able;
 import com.recruitment.www.common.RestResp;
 import com.recruitment.www.common.Token;
 import com.recruitment.www.entity.Company;
+import com.recruitment.www.entity.Offer;
 import com.recruitment.www.repo.CompanyRepo;
 import org.springframework.stereotype.Service;
 
@@ -103,6 +104,12 @@ public class CompanyService {
         return RestResp.success("模糊查询未审核公司成功",allCompany);
 
     }
+
+
+//    public RestResp searchById(Long ids){
+//        List<Offer> offer = findById(Long.valueOf(ids));
+//        return RestResp.success("模糊查询未审核公司成功");
+//    }
 
 
 }
