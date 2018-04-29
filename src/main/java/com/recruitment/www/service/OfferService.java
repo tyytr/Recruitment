@@ -37,16 +37,16 @@ public class OfferService {
     }
 
 
-    public RestResp searchById(String ids){
-        List<Offer> result = offerRepo.findById(Long.valueOf(ids));
-        result.forEach(offer ->{
-            User user = userRepo.findOne(Long.parseLong(offer.getUserId()));
-            System.out.println(user+"1");
-
-            Release release = releaseRepo.findOne(Long.parseLong(offer.getReleaseId()));
-            System.out.println(release+"2");
-        });
-        return RestResp.success(1,"查询简历成功");
-    }
+//    public RestResp searchById(String ids){
+//        List<Offer> result = offerRepo.findById(Long.valueOf(ids));
+//        result.forEach(offer ->{
+//            User user = userRepo.findOne(Long.parseLong(offer.getUserId()));
+//            System.out.println(user+"1");
+//
+//            Release release = releaseRepo.findOne(Long.parseLong(offer.getReleaseId()));
+//            System.out.println(release+"2");
+//        });
+//        return RestResp.success(1,"查询简历成功");
+//    }
 
 }

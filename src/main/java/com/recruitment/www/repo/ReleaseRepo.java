@@ -14,4 +14,7 @@ public interface ReleaseRepo extends CrudRepository<Release,Long> {
 
     @Query(value = "SELECT * FROM tbl_release WHERE education LIKE %?1% OR username LIKE %?1% OR position LIKE %?1% OR experience LIKE %?1% OR city LIKE %?1% OR salary LIKE %?1%",nativeQuery = true)
     List<Release> findByIdLikeAndAble(String id);
+
+    @Query(value = "SELECT * FROM tbl_release WHERE release_id = ?1",nativeQuery = true)
+    List<Release> findByReleaseId(Long release_id);
 }

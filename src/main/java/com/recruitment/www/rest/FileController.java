@@ -28,7 +28,7 @@ public class FileController {
         String fileName = file.getOriginalFilename();
 
 //        String filePath = request.getSession().getServletContext().getRealPath("/file/" + i + "/");
-        String filePath = "E:\\A-work\\work\\recruitment\\src\\main\\resources\\templates\\file\\"+i+"\\";
+        String filePath = "E:\\A-work\\work\\recruitment\\src\\main\\resources\\templates\\demo\\file\\"+i+"\\";
         String filePath1 ="/file/" + i + "/";
         System.out.println(contentType);
         System.out.println(filePath);

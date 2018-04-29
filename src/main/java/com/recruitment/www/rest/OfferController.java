@@ -21,9 +21,10 @@ public class OfferController {
         return offerService.sendJob(offer);
     }
 
-    @GetMapping("/listOne/{ids}")
-    public RestResp searchById(@PathVariable("ids") String  ids){
-        return offerService.searchById(ids);
-    }
+//    @GetMapping("/list/{ids}")
+//    public RestResp searchById(@PathVariable("ids") String  ids){
+//        return offerService.searchById(ids);
+//    }
+
 
 }

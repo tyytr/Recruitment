@@ -161,7 +161,7 @@ class PersonalJobOffers extends Component{
                             }else {
                                 $.ajax({
                                     type : "get",
-                                    url : `${ROOT_URL}/release/find/${_this.state.value}`,
+                                    url : `${ROOT_URL}/release/find/${value}`,
                                     cache : false,
                                     traditional: true,
                                     // data : {"search":value},

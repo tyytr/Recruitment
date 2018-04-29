@@ -31,7 +31,8 @@ export function singupAction(data) {
         success : function (msg) {
             console.log(msg);
             if (msg.status === 1) {
-                alert(localStorage.getItem('username')+"  注册成功！");
+                alert(msg.message);
+                // alert(localStorage.getItem('username')+"  注册成功！");
                 window.location.href = `${ROOT_URLF}/singin`;
             }else if (msg.status === 0){
                 alert(msg.message);
@@ -58,7 +59,8 @@ export function singupCompanyAction(data) {
         success : function (msg) {
             console.log(msg);
             if (msg.status === 1) {
-                alert(localStorage.getItem('username')+"  的注册信息已经提交，等待管理员审核！");
+                alert("公司注册信息已经提交，等待管理员审核！");
+                // alert(localStorage.getItem('username')+"  的注册信息已经提交，等待管理员审核！");
                 window.location.href = `${ROOT_URLF}`;
             }else if (msg.status === "0"){
                 alert(msg.message);
@@ -175,6 +177,7 @@ export function adminReviewAgree(data) {
         success : function (msg) {
             console.log(msg);
             if (msg.status === 1){
+                alert("公司审核通过");
                 window.location.href = `${ROOT_URLF}/adminReviewCompany`;
             }
         },
@@ -196,6 +199,7 @@ export function adminReviewDisagree(data) {
         success : function (msg) {
             console.log(msg);
             if (msg.status === 1){
+                alert("公司审核拒绝");
                 window.location.href = `${ROOT_URLF}/adminReviewCompany`;
             }
         },
@@ -302,6 +306,33 @@ export function JobOffersSend(data) {
 }
 
 
+
+/**
+ * @author LiJun
+ * @date 2018/4/28
+ * @Description: 公司搜索建立
+*/
+export function companyQuery(data) {
+    console.log(data);
+    $.ajax({
+        type : "get",
+        url : `${ROOT_URL}/release/list/${data}`,
+        cache : false,
+        traditional: true,
+        // data : data,
+        success : function (msg) {
+            console.log(msg);
+            if (msg.status === 1){
+                alert(msg.message);
+                // window.location.href = `${ROOT_URLF}/personalJobOffers`;
+            }
+        },
+        error : function (err) {
+            console.log(err);
+            alert("与后台交互走error");
+        }
+    });
+}
 
 
 

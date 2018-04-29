@@ -18,7 +18,8 @@ import {Input,Table,Button} from 'antd';
 import 'antd/dist/antd.css';
 import {ROOT_URL} from "../actions/type";
 import axios from 'axios';
-import {JobOffersSend} from "../actions/auth";
+import {companyQuery, JobOffersSend} from "../actions/auth";
+import {ROOT_URLF} from "../../../../../file/demo/public/actions/type";
 
 class Query extends Component{
     constructor(props) {
@@ -36,10 +37,10 @@ class Query extends Component{
     componentDidMount(){
         const ids = localStorage.getItem("userId");
         console.log(ids);
-        axios.get(`${ROOT_URL}/offer/listOne/${ids}`)
+        axios.get(`${ROOT_URL}/release/listOne/${ids}`)
             .then(response =>{
                 console.log(response);
-                this.setState({data : response.data.data});
+                this.setState({data : response.data.data.resumes});
                 // alert("success");
             })
             .catch((err) => {
@@ -49,7 +50,7 @@ class Query extends Component{
     }
     render(){
         const columns = [{
-            title : '公司名称',
+            title : '姓名',
             dataIndex : 'username',
             key : 'username',
             // className : 'col-xs-5'
@@ -60,13 +61,13 @@ class Query extends Component{
             key : 'phoneNumber',
             // className : 'col-xs-5'
         },{
-            title : '招聘职位',
-            dataIndex : 'position',
-            key : 'position'
+            title : '毕业院校',
+            dataIndex : 'university',
+            key : 'university'
         },{
-            title : '学历要求',
-            dataIndex : 'education',
-            key : 'education'
+            title : '专业',
+            dataIndex : 'major',
+            key : 'major'
         },{
             title : '工作经验',
             dataIndex : 'experience',
@@ -76,17 +77,14 @@ class Query extends Component{
             dataIndex : 'city',
             key : 'city'
         },{
-            title : '招聘人数',
-            dataIndex : 'number',
-            key : 'number'
-        },{
-            title : '最低薪资',
+            title : '期望薪资',
             dataIndex : 'salary',
             key : 'salary'
         },{
-            title : '职位描述',
-            dataIndex : 'details',
-            key : 'details'
+            title : '查阅简历',
+            dataIndex : 'url',
+            key : 'url',
+            render: text => <a className={"hover"} href={`${ROOT_URLF}`+text}>查阅简历</a>,
         }];
         const data = this.state.data;
         // console.log(data);
@@ -120,7 +118,7 @@ class Query extends Component{
                                     {/*releaseId : selectedRowKeys[0],*/}
                                     {/*userId : localStorage.getItem("userId"),*/}
                                 {/*};*/}
-                                {/*JobOffersSend(data);*/}
+                                {/*// companyQuery(data);*/}
                                 {/*setTimeout(() => {*/}
                                     {/*this.setState({*/}
                                         {/*selectedRowKeys: [],*/}
@@ -156,34 +154,34 @@ class Query extends Component{
                         {hasSelected ? `选择 ${selectedRowKeys.length} 目标` : ''}
                     </span>
                     </div>
-                    <div className={"col-sm-6"}>
-                        <Input.Search
-                            placeholder="请输入搜索职位或公司名字"
-                            onSearch={value => {
-                                console.log(value);
-                                $.ajax({
-                                    type : "POST",
-                                    url : `${ROOT_URL}/search/searchAdvice`,
-                                    cache : false,
-                                    traditional: true,
-                                    data : {"search":value},
-                                    // dataType : "json",
-                                    success : function (msg) {
-                                        console.log(msg);
-                                        if (msg.status === 1){
-                                            _this.setState({data : msg.data});
-                                            // window.location.href = `${ROOT_URLF}/adminGoods`;
-                                        }
-                                    },
-                                    error : function (err) {
-                                        console.log(err);
-                                        alert("与后台交互走error");
-                                    }
-                                });
-                            }}
-                            enterButton
-                        />
-                    </div>
+                    {/*<div className={"col-sm-6"}>*/}
+                        {/*<Input.Search*/}
+                            {/*placeholder="请输入搜索职位或公司名字"*/}
+                            {/*onSearch={value => {*/}
+                                {/*console.log(value);*/}
+                                {/*$.ajax({*/}
+                                    {/*type : "POST",*/}
+                                    {/*url : `${ROOT_URL}/search/searchAdvice`,*/}
+                                    {/*cache : false,*/}
+                                    {/*traditional: true,*/}
+                                    {/*data : {"search":value},*/}
+                                    {/*// dataType : "json",*/}
+                                    {/*success : function (msg) {*/}
+                                        {/*console.log(msg);*/}
+                                        {/*if (msg.status === 1){*/}
+                                            {/*_this.setState({data : msg.data});*/}
+                                            {/*// window.location.href = `${ROOT_URLF}/adminGoods`;*/}
+                                        {/*}*/}
+                                    {/*},*/}
+                                    {/*error : function (err) {*/}
+                                        {/*console.log(err);*/}
+                                        {/*alert("与后台交互走error");*/}
+                                    {/*}*/}
+                                {/*});*/}
+                            {/*}}*/}
+                            {/*enterButton*/}
+                        {/*/>*/}
+                    {/*</div>*/}
                     <Table className={"col-sm-12"} columns={columns} dataSource={array} />
                 </div>
             </div>

@@ -17,12 +17,18 @@ public class ReleaseVO {
 
     private String position;
 
-    private List<User> users;
+//    private List<User> users;
+    private List<Resume> resumes;
 
-    public ReleaseVO(Long releaseId, String position, List<User> users) {
-        this.releaseId = releaseId;
-        this.position = position;
-        this.users = users;
+//    public ReleaseVO(Long releaseId, String position, List<User> users) {
+//        this.releaseId = releaseId;
+//        this.position = position;
+//        this.users = users;
+//    }
+    public ReleaseVO( List<Resume> resumes) {
+//        this.releaseId = releaseId;
+//        this.position = position;
+        this.resumes = resumes;
     }
 
 

@@ -76,6 +76,7 @@ class Singup extends Component {
         const myDate = new Date();
         const time = myDate.toLocaleString();
         const data = {
+            // id : this.state.userName,
             username: this.state.userName,
             password: this.state.passWord,
             // rpassword : this.state.rPassWord,

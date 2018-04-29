@@ -25,8 +25,12 @@ public class ReleaseController {
         return releaseService.listAll();
     }
 
+    @GetMapping("/listOne/{id}")
+    public RestResp findRelease1(@PathVariable("id") String releaseId){
+        return releaseService.findRelease1(releaseId);
+    }
     @GetMapping("/find/{id}")
-    public RestResp findRelease(@PathVariable("id") String releaseId){
-        return releaseService.findRelease(releaseId);
+    public RestResp findRelease(@PathVariable("id") String id){
+        return releaseService.findRelease(id);
     }
 }

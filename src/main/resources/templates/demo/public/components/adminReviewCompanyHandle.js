@@ -113,25 +113,29 @@ class AdminReviewCompanyHandle extends Component{
                         placeholder="请输入搜索公司名字"
                         onSearch={value => {
                             console.log(value);
-                            $.ajax({
-                                type : "GET",
-                                url : `${ROOT_URL}/company/find/${value}`,
-                                // cache : false,
-                                traditional: true,
-                                // data : {"search":value},
-                                // dataType : "json",
-                                success : function (msg) {
-                                    console.log(msg);
-                                    if (msg.status === 1){
-                                        _this.setState({data : msg.data});
-                                        // window.location.href = `${ROOT_URLF}/adminGoods`;
+                            if (null === value || undefined === value || "" === value){
+                                alert("请输入搜索内容");
+                            }else {
+                                $.ajax({
+                                    type : "GET",
+                                    url : `${ROOT_URL}/company/find/${value}`,
+                                    // cache : false,
+                                    traditional: true,
+                                    // data : {"search":value},
+                                    // dataType : "json",
+                                    success : function (msg) {
+                                        console.log(msg);
+                                        if (msg.status === 1){
+                                            _this.setState({data : msg.data});
+                                            // window.location.href = `${ROOT_URLF}/adminGoods`;
+                                        }
+                                    },
+                                    error : function (err) {
+                                        console.log(err);
+                                        alert("与后台交互走error");
                                     }
-                                },
-                                error : function (err) {
-                                    console.log(err);
-                                    alert("与后台交互走error");
-                                }
-                            });
+                                });
+                            }
                         }}
                         enterButton
                     />
