@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * @Author: Gaoyp
+ * @Author: luanxin
  * @Description:
  * @Date: Create in 下午2:03 2018/4/13
  * @Modified By:

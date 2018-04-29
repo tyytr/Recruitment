@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @Author: Gaoyp
+ * @Author: luanxin
  * @Description: 实现注册demo
  * @Date: Create in 下午3:22 2018/3/15
  * @Modified By:

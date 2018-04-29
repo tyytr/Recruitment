@@ -3,7 +3,7 @@ package com.recruitment.www.common;
 import lombok.Data;
 
 /**
- * @Author: Gaoyp
+ * @Author: luanxin
  * @Description:
  * @Date: Create in 下午1:21 2018/3/15
  * @Modified By:

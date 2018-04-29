@@ -1,5 +1,5 @@
 /**
- * @author LiJun
+ * @author luanxin
  * @date 2018/4/13
  * @Description:
 */
@@ -29,7 +29,7 @@ class AdminReviewCompany extends Component{
                     </div>
                     <div className={"col-xs-12 g-pb-30"}>
                         <Tabs tabPosition={this.state.tabPosition}>
-                            <Tabs.TabPane tab="公司审核" key="2"><AdminReviewCompanyHandle/></Tabs.TabPane>
+                            <Tabs.TabPane tab="公司审核" key="1"><AdminReviewCompanyHandle/></Tabs.TabPane>
                         </Tabs>
                     </div>
                 </div>

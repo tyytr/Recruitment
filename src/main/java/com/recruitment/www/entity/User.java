@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 /**
- * @Author: Gaoyp
+ * @Author: luanxin
  * @Description: 用户
  * @Date: Create in 下午3:32 2018/3/15
  * @Modified By:

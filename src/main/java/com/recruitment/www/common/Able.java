@@ -1,7 +1,7 @@
 package com.recruitment.www.common;
 
 /**
- * @Author: Gaoyp
+ * @Author: luanxin
  * @Description:
  * @Date: Create in 下午2:27 2018/4/13
  * @Modified By:

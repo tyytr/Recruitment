@@ -1,26 +1,27 @@
 /**
- * Created by lijun on 2017/12/10.
+ * Created by luanxin on 2017/12/10.
  */
 import React, { Component } from 'react';
-import {Select, Tabs} from "antd";
-import Sing from './sing/sing';
-import SingFormIn from './sing/singFormIn';
+import {Tabs} from "antd";
 import {signinAction, signinAdminAction, signinCompanyAction} from "../../actions/auth";
 
 class Singin extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            //个人
             userName : "",
             passWord : "",
             nameHelp : "",
             wordHelp : "",
 
+            //公司的
             userName1 : "",
             passWord1 : "",
             nameHelp1 : "",
             wordHelp1 : "",
 
+            //管理员
             userName2 : "",
             passWord2 : "",
             nameHelp2 : "",
@@ -40,11 +41,6 @@ class Singin extends Component {
         console.log(this.state.passWord);
     }
     handleClick() {
-        const data = {
-            "username" : this.state.userName,
-            "password" : this.state.passWord,
-
-        };
         if (this.state.userName === "" || this.state.userName === null) {
             this.setState({nameHelp: "* 用户名不能为空"});
             // alert(this.state.nameHelp);
@@ -76,11 +72,6 @@ class Singin extends Component {
         console.log(this.state.passWord1);
     }
     handleClick1() {
-        const data = {
-            "username" : this.state.userName1,
-            "password" : this.state.passWord1,
-
-        };
         if (this.state.userName1 === "" || this.state.userName1 === null) {
             this.setState({nameHelp1: "* 用户名不能为空"});
             // alert(this.state.nameHelp);
@@ -112,11 +103,6 @@ class Singin extends Component {
         console.log(this.state.passWord2);
     }
     handleClick2() {
-        const data = {
-            "username" : this.state.userName2,
-            "password" : this.state.passWord2,
-
-        };
         if (this.state.userName2 === "" || this.state.userName2 === null) {
             this.setState({nameHelp2: "* 用户名不能为空"});
             // alert(this.state.nameHelp);
@@ -142,6 +128,7 @@ class Singin extends Component {
                         <form className={"col-md-6 col-md-offset-3"}>
                             <h2 style={{textAlign:"center"}}>登录</h2>
                             <Tabs defaultActiveKey="1">
+
                                 <Tabs.TabPane tab="个人登录" key="1">
                                     <div className="form-group">
                                         <label htmlFor="username">用户名</label>
@@ -155,6 +142,9 @@ class Singin extends Component {
                                     </div>
                                     <button type="button" className="btn btn-default" onClick={this.handleClick.bind(this)}>登录</button>
                                 </Tabs.TabPane>
+
+
+
                                 <Tabs.TabPane tab="企业登录" key="2">
                                     <div className="form-group">
                                         <label htmlFor="username1">企业名</label>
@@ -168,6 +158,10 @@ class Singin extends Component {
                                     </div>
                                     <button type="button" className="btn btn-default" onClick={this.handleClick1.bind(this)}>登录</button>
                                 </Tabs.TabPane>
+
+
+
+
                                 <Tabs.TabPane tab="管理员登录" key="3">
                                     <div className="form-group">
                                         <label htmlFor="username2">管理员</label>

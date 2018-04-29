@@ -1,8 +1,8 @@
 /**
- * Created by lijun on 2017/12/10.
+ * Created by luanxin on 2017/12/10.
  */
 import React, { Component } from 'react';
-import {Select, Tabs} from "antd";
+import {Tabs} from "antd";
 import {singupAction, singupCompanyAction} from "../../actions/auth";
 import {ROOT_URLF} from "../../actions/type";
 
@@ -34,7 +34,9 @@ class Singup extends Component {
 
     //username change
     changeUsername(e) {
+        //获取输入的值
         let username = e.target.value;
+        //把获取的值存到state中
         this.setState({userName: username});
         console.log(this.state.userName);
     }
@@ -76,14 +78,11 @@ class Singup extends Component {
         const myDate = new Date();
         const time = myDate.toLocaleString();
         const data = {
-            // id : this.state.userName,
             username: this.state.userName,
             password: this.state.passWord,
-            // rpassword : this.state.rPassWord,
             phoneNumber : this.state.phone,
             agreement : this.state.isAgree,
             createTime : time,
-            // authorityInfo: this.state.authorityInfo,
         };
         if (this.state.isAgree === false) {
             alert("请先阅读《易换网用户协议》并且同意协议");
@@ -119,6 +118,8 @@ class Singup extends Component {
             }
         }
     }
+
+    //企业注册函数
 
     //username change
     changeUsername1(e) {
@@ -165,11 +166,9 @@ class Singup extends Component {
         const data = {
             username: this.state.userName1,
             password: this.state.passWord1,
-            // rpassword : this.state.rPassWord1,
             phoneNumber : this.state.phone1,
             agreement : this.state.isAgree1,
             createTime : time,
-            // authorityInfo: this.state.authorityInfo,
         };
         if (this.state.isAgree1 === false) {
             alert("请先阅读《易换网用户协议》并且同意协议");
@@ -213,11 +212,14 @@ class Singup extends Component {
                         <form className={"col-md-6 col-md-offset-3"}>
                             <h2 style={{textAlign: "center"}}>注册</h2>
                             <Tabs defaultActiveKey="1">
+
                                 <Tabs.TabPane tab="个人注册" key="1">
                                     <div className="form-group">
                                         <label htmlFor="username">用户名</label>
+                                        {/*函数调用，存输入信息到state*/}
                                         <input type="text" name="username" ref="username" className="form-control"
                                                placeholder="用户名" onChange={this.changeUsername.bind(this)}/>
+                                        {/*显示输入框为空的提示*/}
                                         <span>{this.state.nameHelp}</span>
                                     </div>
                                     <div className="form-group">
@@ -239,13 +241,17 @@ class Singup extends Component {
                                     </div>
                                     <div className="checkbox">
                                         <label>
-                                            <input type="checkbox" checked={this.state.isAgree} onClick={this.handleAgree.bind(this)} />我已阅读并同意 <a href={`${ROOT_URLF}/agreement.pdf`}>《易换网用户协议》</a>
+                                            <input type="checkbox" checked={this.state.isAgree} onClick={this.handleAgree.bind(this)} />我已阅读并同意 <a href={`${ROOT_URLF}/agreement.pdf`}>《招聘网用户协议》</a>
                                         </label>
                                     </div>
                                     <button type="button" className="btn btn-default text-center"
                                             onClick={this.handleClick.bind(this, this.state)}>注册
                                     </button>
                                 </Tabs.TabPane>
+
+
+
+
                                 <Tabs.TabPane tab="企业注册" key="2">
                                     <div className="form-group">
                                         <label htmlFor="username1">企业名</label>
@@ -272,7 +278,7 @@ class Singup extends Component {
                                     </div>
                                     <div className="checkbox">
                                         <label>
-                                            <input type="checkbox" checked={this.state.isAgree1} onClick={this.handleAgree1.bind(this)} />我已阅读并同意 <a href={`${ROOT_URLF}/agreement.pdf`}>《易换网用户协议》</a>
+                                            <input type="checkbox" checked={this.state.isAgree1} onClick={this.handleAgree1.bind(this)} />我已阅读并同意 <a href={`${ROOT_URLF}/agreement.pdf`}>《招聘网用户协议》</a>
                                         </label>
                                     </div>
                                     <button type="button" className="btn btn-default text-center"
@@ -280,7 +286,6 @@ class Singup extends Component {
                                     </button>
                                 </Tabs.TabPane>
                             </Tabs>
-
                         </form>
                     </div>
                 </div>

@@ -1,19 +1,11 @@
 /**
- * @author LiJun
- * @date 2018/4/25
- * @Description:
-*/
-/**
- * @author LiJun
+ * @author luanxin
  * @date 2018/4/18
  * @Description:
  */
 import React,{Component} from 'react';
-import {ROOT_URL} from "../actions/type";
-import axios from 'axios';
-import {Radio, DatePicker, Upload, Button, Icon, message, Select, InputNumber, Input} from "antd";
-import {companyRelease, singupAction, singupCompanyAction} from "../actions/auth";
-import {ROOT_URLF} from "../actions/type";
+import { message, Select, InputNumber, Input} from "antd";
+import {companyRelease} from "../actions/auth";
 import 'antd/dist/antd.css';
 
 
@@ -101,6 +93,7 @@ class CompanyRelease extends Component{
 
     //handleClick
     handleClick() {
+        //获取localStorage里变量名字userId的值赋值给id
         const id = localStorage.getItem("userId");
         const username = localStorage.getItem("username");
         const phone_number = localStorage.getItem("phoneNumber");
@@ -226,23 +219,6 @@ class CompanyRelease extends Component{
     }
 
     render() {
-        const props = {
-            name: 'file',
-            action: '//jsonplaceholder.typicode.com/posts/',
-            headers: {
-                authorization: 'authorization-text',
-            },
-            onChange(info) {
-                if (info.file.status !== 'uploading') {
-                    console.log(info.file, info.fileList);
-                }
-                if (info.file.status === 'done') {
-                    message.success(`${info.file.name} file uploaded successfully`);
-                } else if (info.file.status === 'error') {
-                    message.error(`${info.file.name} file upload failed.`);
-                }
-            },
-        };
         return (
             <div className={"container"}>
                 <div className={"row"}>

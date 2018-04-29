@@ -2,25 +2,24 @@ import {
     ROOT_URL,
     ROOT_URLF
 } from "./type";
-
+//存储后台返回的登陆信息
 function setAuthToLocalStorage(data) {
     console.log(data);
     if(data.data === null){
         localStorage.setItem('token', "-1");
     }else {
-        localStorage.setItem('token', data.data.token);
-        // localStorage.setItem('token', "-1");
+        localStorage.setItem('token', data.data.token);//权限
         localStorage.setItem('userId', data.data.id); //用户ID
         localStorage.setItem('username', data.data.username); //用户登录名
         localStorage.setItem('phoneNumber', data.data.phoneNumber);//手机号
-        localStorage.setItem('password', data.data.password);//密码
-        // localStorage.setItem('admin', data.data.admin);//管理员
+        // localStorage.setItem('password', data.data.password);//密码
         localStorage.setItem('agreement', data.data.agreement);//同意协议
         localStorage.setItem('loginStatus', false);//当前是否登录
-        localStorage.setItem('able', data.data.able);//当前是否登录
+        localStorage.setItem('able', data.data.able);//说明管理员是否同意注册了
     }
     console.log(localStorage);
 }
+//个人注册函数
 export function singupAction(data) {
     console.log(data);
     $.ajax({
@@ -32,7 +31,6 @@ export function singupAction(data) {
             console.log(msg);
             if (msg.status === 1) {
                 alert(msg.message);
-                // alert(localStorage.getItem('username')+"  注册成功！");
                 window.location.href = `${ROOT_URLF}/singin`;
             }else if (msg.status === 0){
                 alert(msg.message);
@@ -48,20 +46,19 @@ export function singupAction(data) {
         }
     });
 }
-
+//企业注册函数
 export function singupCompanyAction(data) {
     console.log(data);
     $.ajax({
         type : "POST",
         url : `${ROOT_URL}/company/add`,
-        data : data,
+        data : data,//前台自己封装好准备传送的数据
         dataType : "json",
         success : function (msg) {
             console.log(msg);
             if (msg.status === 1) {
                 alert("公司注册信息已经提交，等待管理员审核！");
-                // alert(localStorage.getItem('username')+"  的注册信息已经提交，等待管理员审核！");
-                window.location.href = `${ROOT_URLF}`;
+                window.location.href = `${ROOT_URLF}/singin`;
             }else if (msg.status === "0"){
                 alert(msg.message);
                 window.location.href = `${ROOT_URLF}`;
@@ -76,15 +73,14 @@ export function singupCompanyAction(data) {
         }
     });
 }
-
+//个人登录函数
 export function signinAction(username,password) {
     $.ajax({
         type : "get",
         url : `${ROOT_URL}/user/login`,
         data : {username,password},
-        // dataType : "json",
+        //传送成功后，执行一个回调函数接收后台返回的信息，用于下一步操作
         success : function (msg) {
-            // localStorage.setItem('token', data.data.token);
             setAuthToLocalStorage(msg);
             console.log(msg);
             if (msg.status === 1) {
@@ -104,17 +100,14 @@ export function signinAction(username,password) {
         }
     });
 }
+//公司登陆函数
 export function signinCompanyAction(username,password) {
-    // console.log("1");
     $.ajax({
         type : "get",
         url : `${ROOT_URL}/company/login`,
         data : {username,password},
-
-        // dataType : "json",
+        //ajax传送成功 执行回调函数接受后台返回给前台的数据
         success : function (msg) {
-            // console.log("2");
-            // console.log("3");
             console.log(msg);
             if (msg.status === 1) {
                 setAuthToLocalStorage(msg);
@@ -125,20 +118,20 @@ export function signinCompanyAction(username,password) {
                 alert(msg.message);
                 // window.location.href = `${ROOT_URLF}/singin`;
             }
-            // localStorage.setItem('loginStatus', true);
         },
+        //ajax传送失败，输出失败的原因
         error : function (err) {
             console.log(err);
             alert("与后台交互走error");
         }
     });
 }
+//管理员登陆函数
 export function signinAdminAction(username,password) {
     $.ajax({
         type : "get",
         url : `${ROOT_URL}/admin/login`,
         data : {username,password},
-        // dataType : "json",
         success : function (msg) {
             setAuthToLocalStorage(msg);
             console.log(msg);
@@ -161,7 +154,7 @@ export function signinAdminAction(username,password) {
 
 
 /**
- * @author LiJun
+ * @author luanxin
  * @date 2018/4/13
  * @Description: 管理员审核公司
 */
@@ -214,7 +207,7 @@ export function adminReviewDisagree(data) {
 
 
 /**
- * @author LiJun
+ * @author luanxin
  * @date 2018/4/26
  * @Description: 个人发布
 */
@@ -246,7 +239,7 @@ export function personalResume(data) {
 
 
 /**
- * @author LiJun
+ * @author luanxin
  * @date 2018/4/27
  * @Description: 企业招聘
 */
@@ -279,7 +272,7 @@ export function companyRelease(data) {
 
 
 /**
- * @author LiJun
+ * @author luanxin
  * @date 2018/4/27
  * @Description: 投递简历
 */
@@ -308,9 +301,9 @@ export function JobOffersSend(data) {
 
 
 /**
- * @author LiJun
+ * @author luanxin
  * @date 2018/4/28
- * @Description: 公司搜索建立
+ * @Description: 公司展示投递简历
 */
 export function companyQuery(data) {
     console.log(data);
@@ -337,66 +330,3 @@ export function companyQuery(data) {
 
 
 
-
-
-export function adminDeleteWage(data) {
-    $.ajax({
-        type : "get",
-        url : `${ROOT_URL}/worker/delworker`,
-        cache : false,
-        traditional: true,
-        data : {"numbers":data},
-        success : function (msg) {
-            console.log(msg);
-            if (msg.status === 1){
-                window.location.href = `${ROOT_URLF}/adminWage`;
-            }
-        },
-        error : function (err) {
-            console.log(err);
-            alert("与后台交互走error");
-        }
-    });
-}
-
-export function adminAddWage(data) {
-    console.log(data);
-    $.ajax({
-        type : "post",
-        url : `${ROOT_URL}/worker/addworker`,
-        cache : false,
-        traditional: true,
-        data : data,
-        success : function (msg) {
-            console.log(msg);
-            if (msg.status === 1){
-                window.location.href = `${ROOT_URLF}/adminWage`;
-            }
-        },
-        error : function (err) {
-            console.log(err);
-            alert("与后台交互走error");
-        }
-    });
-}
-
-export function adminUpdateWage(worker,id) {
-    console.log(worker);
-    $.ajax({
-        type : "get",
-        url : `${ROOT_URL}/worker/updateworker/${id}`,
-        cache : false,
-        traditional: true,
-        data : worker,
-        success : function (msg) {
-            console.log(msg);
-            if (msg.status === 1){
-                // window.location.href = `${ROOT_URLF}/adminWage`;
-            }
-        },
-        error : function (err) {
-            console.log(err);
-            alert("与后台交互走error");
-        }
-    });
-}

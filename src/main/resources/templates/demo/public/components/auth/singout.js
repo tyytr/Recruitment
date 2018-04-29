@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-// import Grounding from '../grounding';
 import 'antd/dist/antd.css';
 class Singout extends Component{
     constructor(props) {
@@ -9,10 +8,9 @@ class Singout extends Component{
     render(){
         return (
             <div className={"container"}>
-                { localStorage.clear()}
+                {localStorage.clear()}
             </div>
         )
     }
 }
 export default Singout;
-// module.exports = ProductBox;

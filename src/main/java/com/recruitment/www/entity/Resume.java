@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * @Author: Gaoyp
+ * @Author: luanxin
  * @Description:
  * @Date: Create in 下午5:30 2018/4/24
  * @Modified By:

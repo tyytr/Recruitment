@@ -1,5 +1,5 @@
 /**
- * @author LiJun
+ * @author luanxin
  * @date 2018/4/13
  * @Description:
 */
@@ -39,7 +39,6 @@ class AdminReviewCompanyHandle extends Component{
             dataIndex : 'username',
             key : 'username',
             className : 'col-xs-5'
-            // render: text => <a href="#">{text}</a>,
         },{
             title : '联系方式',
             dataIndex : 'phoneNumber',
@@ -121,13 +120,10 @@ class AdminReviewCompanyHandle extends Component{
                                     url : `${ROOT_URL}/company/find/${value}`,
                                     // cache : false,
                                     traditional: true,
-                                    // data : {"search":value},
-                                    // dataType : "json",
                                     success : function (msg) {
                                         console.log(msg);
                                         if (msg.status === 1){
                                             _this.setState({data : msg.data});
-                                            // window.location.href = `${ROOT_URLF}/adminGoods`;
                                         }
                                     },
                                     error : function (err) {
@@ -140,6 +136,7 @@ class AdminReviewCompanyHandle extends Component{
                         enterButton
                     />
                 </div>
+                {/*rowSelection选择的行       columns列名            dataSource后台返回存好的数据*/}
                 <Table className={"col-sm-12"} rowSelection={rowSelection} columns={columns} dataSource={array} />
             </div>
         )

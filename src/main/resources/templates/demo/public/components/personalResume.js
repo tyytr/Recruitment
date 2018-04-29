@@ -1,14 +1,12 @@
 /**
- * @author LiJun
+ * @author luanxin
  * @date 2018/4/18
  * @Description:
 */
 import React,{Component} from 'react';
 import {ROOT_URL} from "../actions/type";
-import axios from 'axios';
 import { Radio , DatePicker , Upload, Button, Icon, message } from "antd";
 import {personalResume} from "../actions/auth";
-import {ROOT_URLF} from "../actions/type";
 import 'antd/dist/antd.css';
 
 
@@ -16,7 +14,6 @@ class PersonalResume extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            // value: "",
             fileList: [0],
             uploading: false,
             url: "",
@@ -223,6 +220,7 @@ class PersonalResume extends Component{
                                 <div className="form-group">
                                     <label className="exampleInputCity1">上传简历</label>
                                     <div>
+                                        {/*  ...props   所有属性  */}
                                         <Upload {...props}>
                                             <Button>
                                                 <Icon type="upload" /> 上传文件
