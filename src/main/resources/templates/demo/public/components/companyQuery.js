@@ -8,7 +8,7 @@ import {Table} from 'antd';
 import 'antd/dist/antd.css';
 import {ROOT_URL} from "../actions/type";
 import axios from 'axios';
-import {ROOT_URLF} from "../../../../../file/demo/public/actions/type";
+import {ROOT_URLF} from "../actions/type";
 
 class Query extends Component{
     constructor(props) {

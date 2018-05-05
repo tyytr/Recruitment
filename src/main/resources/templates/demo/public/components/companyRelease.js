@@ -214,7 +214,12 @@ class CompanyRelease extends Component{
                 personHelp: "",
                 phoneHelp: ""
             });
-            companyRelease(data);
+            let mPattern = (/^1(3|4|5|7|8)\d{9}$/);
+            if (! mPattern.test(this.state.phone)){
+                alert("请输入正确手机号");
+            }else {
+                companyRelease(data);
+            }
         }
     }
 

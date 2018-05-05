@@ -77,6 +77,7 @@ class Singup extends Component {
     handleClick() {
         const myDate = new Date();
         const time = myDate.toLocaleString();
+        //JSON格式数据
         const data = {
             username: this.state.userName,
             password: this.state.passWord,
@@ -114,7 +115,15 @@ class Singup extends Component {
                     wordHelp: "",
                     rWordHelp: ""
                 });
-                singupAction(data);
+                let mPattern = (/^1(3|4|5|7|8)\d{9}$/);
+                let pPattern =  /^[A-Za-z0-9]{6,10}$/;
+                if (! mPattern.test(this.state.phone)){
+                    alert("请输入正确手机号");
+                }else if (! pPattern.test(this.state.passWord)){
+                    alert("密码6-10位，包括字母或数字");
+                }else {
+                    singupAction(data);
+                }
             }
         }
     }
@@ -200,7 +209,15 @@ class Singup extends Component {
                     wordHelp1: "",
                     rWordHelp1: ""
                 });
-                singupCompanyAction(data);
+                let mPattern = (/^1(3|4|5|7|8)\d{9}$/);
+                let pPattern =  /^[A-Za-z0-9]{6,10}$/;
+                if (! mPattern.test(this.state.phone)){
+                    alert("请输入正确手机号");
+                }else if (! pPattern.test(this.state.passWord)){
+                    alert("密码6-10位，包括字母或数字");
+                }else {
+                    singupCompanyAction(data);
+                }
             }
         }
     }
@@ -217,8 +234,7 @@ class Singup extends Component {
                                     <div className="form-group">
                                         <label htmlFor="username">用户名</label>
                                         {/*函数调用，存输入信息到state*/}
-                                        <input type="text" name="username" ref="username" className="form-control"
-                                               placeholder="用户名" onChange={this.changeUsername.bind(this)}/>
+                                        <input type="text" name="username" ref="username" className="form-control" placeholder="用户名" onChange={this.changeUsername.bind(this)}/>
                                         {/*显示输入框为空的提示*/}
                                         <span>{this.state.nameHelp}</span>
                                     </div>

@@ -14,12 +14,12 @@ import org.springframework.stereotype.Repository;
 public interface UserRepo extends CrudRepository<User,Long> {
 
 
-    /**
-     * 根据用户名查找用户
-     * @param  username 用户名
-     * @return 返回一个用户
-     */
-    User findByUsername(String username);
+        /**
+         * 根据用户名查找用户
+         * @param  username 用户名
+         * @return 返回一个用户
+         */
+        User findByUsername(String username);
 
 
 }
